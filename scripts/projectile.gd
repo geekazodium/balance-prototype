@@ -6,7 +6,8 @@ class_name Projectile
 @export var launch_speed: float;
 
 @export var collide_event: String;
-@export var acceleration_rate: float;
+@export var gravity: float = 30;
+
 
 func _ready() -> void:
 	self.enabled = false;
@@ -16,7 +17,7 @@ func _physics_process(delta: float) -> void:
 	if self.is_colliding():
 		self.on_hit();
 	self.position += delta * self.velocity;
-	self.velocity += self.velocity.normalized() * delta * acceleration_rate;
+	self.velocity += Vector2.DOWN * gravity * delta;
 	self.sprite.rotation = atan2(self.velocity.y, self.velocity.x);
 	
 	self.target_position = delta * self.velocity;
