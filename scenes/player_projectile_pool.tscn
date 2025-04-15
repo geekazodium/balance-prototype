@@ -18,8 +18,9 @@ max_results = 1
 collision_mask = 21
 script = ExtResource("2_k1xsm")
 sprite = NodePath("Sprite2D")
-launch_speed = 450.0
+launch_speed = 400.0
 collide_event = "player_projectile_hit_event"
+acceleration_rate = 400.0
 metadata/_custom_type_script = "uid://dmr8rgopkln6l"
 
 [node name="Sprite2D" type="Sprite2D" parent="Projectile"]

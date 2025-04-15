@@ -11,4 +11,3 @@ func _physics_process(_delta: float) -> void:
 			projectile_source.get_local_mouse_position(), 
 			projectile_source.global_position
 		);
-		self.projectile.velocity += projectile_source.velocity;
