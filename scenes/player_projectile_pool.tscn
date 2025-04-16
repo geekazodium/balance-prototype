@@ -8,13 +8,14 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_y3j0m"]
 radius = 3.0
 
-[node name="PlayerProjectilePool" type="Node2D" node_paths=PackedStringArray("projectile", "hold_timer")]
+[node name="PlayerProjectilePool" type="Node2D" node_paths=PackedStringArray("projectile")]
 script = ExtResource("1_w4aj4")
 launch_action = "shoot"
 projectile = NodePath("Projectile")
 fully_charged_multiplier = 1.5
 projectile_offset = Vector2(0, -10)
-hold_timer = NodePath("ChargeTimer")
+player_momentum_percentage = 0.3
+max_hold_timer = 0.8
 
 [node name="Projectile" type="ShapeCast2D" parent="." node_paths=PackedStringArray("sprite")]
 visible = false
@@ -32,18 +33,12 @@ metadata/_custom_type_script = "uid://dmr8rgopkln6l"
 scale = Vector2(0.1875, 0.1875)
 texture = ExtResource("3_k1xsm")
 
-[node name="ChargeTimer" type="Timer" parent="."]
-process_callback = 0
-one_shot = true
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="ChargeTimer"]
-
-[node name="ChargeProgressBar" type="ProgressBar" parent="ChargeTimer/CanvasLayer" node_paths=PackedStringArray("displayed_timer")]
+[node name="ChargeProgressBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("projectile_pool")]
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 161.0
 offset_bottom = 32.0
 script = ExtResource("4_646rt")
-displayed_timer = NodePath("../..")
-
-[connection signal="timeout" from="ChargeTimer" to="." method="launch_projectile"]
+projectile_pool = NodePath("../..")
