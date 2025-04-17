@@ -3,7 +3,7 @@ class_name PlayerProjectilePool
 
 @export var launch_action: String = "";
 @export var projectile_source: PlatformerCharacterBody;
-@export var projectile: Projectile;
+@export var projectile: PlayerProjectile;
 @export var fully_charged_multiplier: float;
 @export var projectile_offset: Vector2;
 @export var player_momentum_percentage: float;

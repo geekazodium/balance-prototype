@@ -12,14 +12,14 @@ offset_right = 161.0
 offset_bottom = 32.0
 script = ExtResource("1_3eqaf")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="HealthProgressBar" type="ProgressBar" parent="."]
 offset_left = 80.0
 offset_top = 606.0
 offset_right = 287.0
 offset_bottom = 633.0
 script = ExtResource("2_0d208")
 
-[node name="Label" type="Label" parent="ProgressBar"]
+[node name="Label" type="Label" parent="HealthProgressBar"]
 offset_left = -67.0
 offset_right = -11.0
 offset_bottom = 23.0

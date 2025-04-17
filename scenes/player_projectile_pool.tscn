@@ -24,7 +24,6 @@ collision_mask = 21
 script = ExtResource("2_k1xsm")
 sprite = NodePath("Sprite2D")
 launch_speed = 300.0
-collide_event = "player_projectile_hit_event"
 gravity = 700.0
 metadata/_custom_type_script = "uid://dmr8rgopkln6l"
 
