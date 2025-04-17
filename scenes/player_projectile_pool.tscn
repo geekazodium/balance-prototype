@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c46h4eyjwko4t" path="res://assets/icon.svg" id="3_k1xsm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y3j0m"]
-radius = 3.0
+radius = 0.5
 
 [node name="PlayerProjectilePool" type="Node2D" node_paths=PackedStringArray("projectile")]
 script = ExtResource("1_w4aj4")
