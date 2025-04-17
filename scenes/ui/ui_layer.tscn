@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://duilus4m3lllv"]
+[gd_scene load_steps=4 format=3 uid="uid://duilus4m3lllv"]
 
 [ext_resource type="Script" uid="uid://fin4l0cl18l8" path="res://scripts/ui/charge_progress_bar.gd" id="1_3eqaf"]
 [ext_resource type="Script" uid="uid://cwbyfk0gnj12v" path="res://scripts/ui/player_health_progress_bar.gd" id="2_0d208"]
+[ext_resource type="Script" uid="uid://dk0mtrr5th2d0" path="res://scripts/ui/death_menu.gd" id="3_nhiu8"]
 
 [node name="GameUILayer" type="CanvasLayer"]
 
@@ -19,8 +20,39 @@ offset_right = 287.0
 offset_bottom = 633.0
 script = ExtResource("2_0d208")
 
-[node name="Label" type="Label" parent="HealthProgressBar"]
+[node name="HealthLabel" type="Label" parent="HealthProgressBar"]
 offset_left = -67.0
 offset_right = -11.0
 offset_bottom = 23.0
 text = "Health:"
+
+[node name="DeathMenu" type="VBoxContainer" parent="."]
+process_mode = 2
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = -59.0
+offset_right = 228.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_nhiu8")
+
+[node name="YouHaveDiedLabel" type="Label" parent="DeathMenu"]
+layout_mode = 2
+text = "You have died!"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="DeathMenu"]
+layout_mode = 2
+
+[node name="RetryButton" type="Button" parent="DeathMenu"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Try Again!"
+
+[connection signal="button_up" from="DeathMenu/RetryButton" to="DeathMenu" method="retry_button_clicked"]

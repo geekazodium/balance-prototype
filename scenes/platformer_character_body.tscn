@@ -54,6 +54,7 @@ metadata/_custom_type_script = "uid://bsmfg3s82glt1"
 
 [node name="HealthTracker" type="Node" parent="."]
 script = ExtResource("5_rmrg0")
+death_event = "player_death"
 health_changed_event = "player_health_changed"
 max_health_changed_event = "player_max_health_changed"
 metadata/_custom_type_script = "uid://dxe8lx58w7ilr"
