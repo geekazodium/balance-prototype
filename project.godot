@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="balance-prototype"
-run/main_scene="uid://cu738dbcd0f5b"
+run/main_scene="uid://cdtw68smce8m2"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [autoload]
