@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://cu738dbcd0f5b"]
+[gd_scene load_steps=6 format=3 uid="uid://cu738dbcd0f5b"]
 
 [ext_resource type="PackedScene" uid="uid://cvosldrvolics" path="res://scenes/platformer_character_body.tscn" id="2_qjt1h"]
 [ext_resource type="Script" uid="uid://cehaxkqsuxblg" path="res://scripts/follow_camera.gd" id="3_ycayy"]
@@ -15,6 +15,7 @@ collision_layer = 2
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("follow_target")]
 zoom = Vector2(1.5, 1.5)
+position_smoothing_speed = 10.0
 script = ExtResource("3_ycayy")
 follow_target = NodePath("../CharacterBody2D")
 
