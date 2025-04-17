@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://cu738dbcd0f5b"]
+[gd_scene load_steps=6 format=4 uid="uid://cu738dbcd0f5b"]
 
 [ext_resource type="PackedScene" uid="uid://cvosldrvolics" path="res://scenes/platformer_character_body.tscn" id="2_qjt1h"]
 [ext_resource type="TileSet" uid="uid://cdm4vyunlsrcn" path="res://assets/floor_tileset.tres" id="2_r2qdt"]
 [ext_resource type="Script" uid="uid://cehaxkqsuxblg" path="res://scripts/follow_camera.gd" id="3_ycayy"]
 [ext_resource type="PackedScene" uid="uid://cda5tqxxwg0rk" path="res://scenes/player_projectile_pool.tscn" id="4_bw6k5"]
+[ext_resource type="PackedScene" uid="uid://duilus4m3lllv" path="res://scenes/ui/ui_layer.tscn" id="5_y3j0m"]
 
 [node name="GameScene" type="Node2D"]
 
@@ -22,3 +23,5 @@ follow_target = NodePath("../CharacterBody2D")
 [node name="PlayerProjectilePool" parent="." node_paths=PackedStringArray("projectile_source") instance=ExtResource("4_bw6k5")]
 projectile_source = NodePath("../CharacterBody2D")
 player_momentum_percentage = 0.5
+
+[node name="CanvasLayer" parent="." instance=ExtResource("5_y3j0m")]
