@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://carxnoridwfxh"]
+
+[ext_resource type="Script" uid="uid://fgcend1sxxx0" path="res://scripts/ui/go_to_level_button.gd" id="1_7byrw"]
+
+[node name="GoToLevelButton" type="Button"]
+custom_minimum_size = Vector2(0, 100)
+text = "heck"
+script = ExtResource("1_7byrw")
+
+[connection signal="button_up" from="." to="." method="_on_button_up"]

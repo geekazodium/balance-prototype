@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cda5tqxxwg0rk"]
+[gd_scene load_steps=5 format=3 uid="uid://cda5tqxxwg0rk"]
 
 [ext_resource type="Script" uid="uid://dfkne5kgxcvfk" path="res://scripts/player_projectile_pool.gd" id="1_w4aj4"]
 [ext_resource type="Script" uid="uid://dmr8rgopkln6l" path="res://scripts/projectile.gd" id="2_k1xsm"]
 [ext_resource type="Texture2D" uid="uid://c46h4eyjwko4t" path="res://assets/icon.svg" id="3_k1xsm"]
-[ext_resource type="Script" uid="uid://fin4l0cl18l8" path="res://scripts/charge_progress_bar.gd" id="4_646rt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y3j0m"]
 radius = 3.0
@@ -25,20 +24,9 @@ collision_mask = 21
 script = ExtResource("2_k1xsm")
 sprite = NodePath("Sprite2D")
 launch_speed = 300.0
-collide_event = "player_projectile_hit_event"
 gravity = 700.0
 metadata/_custom_type_script = "uid://dmr8rgopkln6l"
 
 [node name="Sprite2D" type="Sprite2D" parent="Projectile"]
 scale = Vector2(0.1875, 0.1875)
 texture = ExtResource("3_k1xsm")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ChargeProgressBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("projectile_pool")]
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 161.0
-offset_bottom = 32.0
-script = ExtResource("4_646rt")
-projectile_pool = NodePath("../..")

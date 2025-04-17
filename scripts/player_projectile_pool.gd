@@ -3,7 +3,7 @@ class_name PlayerProjectilePool
 
 @export var launch_action: String = "";
 @export var projectile_source: PlatformerCharacterBody;
-@export var projectile: Projectile;
+@export var projectile: PlayerProjectile;
 @export var fully_charged_multiplier: float;
 @export var projectile_offset: Vector2;
 @export var player_momentum_percentage: float;
@@ -15,6 +15,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed(self.launch_action) || Input.is_action_just_released(self.launch_action):
 		if self.hold_timer > 0:
 			self.hold_timer -= delta;
+			EventBus.player_projectile_charge.emit(self.max_hold_timer,self.max_hold_timer - self.hold_timer);
 	if Input.is_action_just_released(self.launch_action):
 		self.launch_projectile();
 
@@ -30,3 +31,4 @@ func launch_projectile() -> void:
 		fully_charged_multiplier * charge_percentage + 1
 	);
 	self.projectile.velocity += self.projectile_source.velocity * self.player_momentum_percentage;
+	EventBus.player_projectile_launch.emit();

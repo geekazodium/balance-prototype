@@ -1,12 +1,14 @@
 extends ShapeCast2D
-class_name Projectile
+class_name PlayerProjectile
 
 @export var velocity: Vector2;
 @export var sprite: Sprite2D;
 @export var launch_speed: float;
 
-@export var collide_event: String;
 @export var gravity: float = 30;
+
+@export var damage: float = 2;
+@export var damage_per_speed: float = 0.001;
 
 func _ready() -> void:
 	self.enabled = false;
@@ -28,6 +30,7 @@ func launch(direction: Vector2, launch_position: Vector2, speed_multiplier: floa
 	self.velocity = direction.normalized() * self.launch_speed * speed_multiplier;
 
 func on_hit() -> void:
-	EventBus.emit_signal(self.collide_event, self.velocity);
+	var hit_damage = self.damage + self.damage_per_speed * self.velocity.length();
+	EventBus.player_projectile_hit.emit(self.velocity, hit_damage);
 	self.enabled = false;
 	self.visible = false;
