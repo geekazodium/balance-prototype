@@ -8,6 +8,8 @@
 
 [node name="GameScene" type="Node2D"]
 
+[node name="GameUILayer" parent="." instance=ExtResource("5_y3j0m")]
+
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_qjt1h")]
 collision_layer = 2
 
@@ -23,5 +25,3 @@ follow_target = NodePath("../CharacterBody2D")
 [node name="PlayerProjectilePool" parent="." node_paths=PackedStringArray("projectile_source") instance=ExtResource("4_bw6k5")]
 projectile_source = NodePath("../CharacterBody2D")
 player_momentum_percentage = 0.5
-
-[node name="CanvasLayer" parent="." instance=ExtResource("5_y3j0m")]

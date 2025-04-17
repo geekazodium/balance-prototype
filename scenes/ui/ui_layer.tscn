@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://duilus4m3lllv"]
+[gd_scene load_steps=3 format=3 uid="uid://duilus4m3lllv"]
 
-[ext_resource type="Script" uid="uid://fin4l0cl18l8" path="res://scripts/charge_progress_bar.gd" id="1_3eqaf"]
+[ext_resource type="Script" uid="uid://fin4l0cl18l8" path="res://scripts/ui/charge_progress_bar.gd" id="1_3eqaf"]
+[ext_resource type="Script" uid="uid://cwbyfk0gnj12v" path="res://scripts/ui/player_health_progress_bar.gd" id="2_0d208"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="GameUILayer" type="CanvasLayer"]
 
 [node name="ChargeProgressBar" type="ProgressBar" parent="."]
 offset_left = 5.0
@@ -10,3 +11,16 @@ offset_top = 5.0
 offset_right = 161.0
 offset_bottom = 32.0
 script = ExtResource("1_3eqaf")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 80.0
+offset_top = 606.0
+offset_right = 287.0
+offset_bottom = 633.0
+script = ExtResource("2_0d208")
+
+[node name="Label" type="Label" parent="ProgressBar"]
+offset_left = -67.0
+offset_right = -11.0
+offset_bottom = 23.0
+text = "Health:"
