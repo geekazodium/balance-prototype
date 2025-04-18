@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvosldrvolics"]
+[gd_scene load_steps=10 format=3 uid="uid://cvosldrvolics"]
 
-[ext_resource type="Script" uid="uid://b7bbejkvqfik3" path="res://scripts/player/platformer_character_body.gd" id="1_hqhnn"]
-[ext_resource type="Script" uid="uid://cqavbo808vyhs" path="res://scripts/player/movement_direction.gd" id="2_4kx3c"]
-[ext_resource type="Script" uid="uid://bsmfg3s82glt1" path="res://scripts/player/boost_on_hit.gd" id="4_oc5kh"]
-[ext_resource type="Script" uid="uid://cagnbiog7bhsx" path="res://scripts/player/player_hurt_box.gd" id="5_4ejxa"]
-[ext_resource type="Script" uid="uid://dxe8lx58w7ilr" path="res://scripts/health/health_tracker.gd" id="5_rmrg0"]
+[ext_resource type="Script" uid="uid://b7bbejkvqfik3" path="res://scripts/player/platformer_character_body.gd" id="1_xh255"]
+[ext_resource type="Script" uid="uid://cqavbo808vyhs" path="res://scripts/player/movement_direction.gd" id="2_rohvy"]
+[ext_resource type="Script" uid="uid://cagnbiog7bhsx" path="res://scripts/player/player_hurt_box.gd" id="3_vv6sb"]
+[ext_resource type="Script" uid="uid://bsmfg3s82glt1" path="res://scripts/player/boost_on_hit.gd" id="4_u450o"]
+[ext_resource type="Script" uid="uid://dxe8lx58w7ilr" path="res://scripts/health/health_tracker.gd" id="5_21ocv"]
+[ext_resource type="Script" uid="uid://ilyj2eqevm05" path="res://scripts/health/health_potions.gd" id="6_blb8o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g3yxv"]
 
@@ -16,7 +17,7 @@ height = 30.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("input_direction", "lock_acceleration_timer")]
 process_physics_priority = 1
-script = ExtResource("1_hqhnn")
+script = ExtResource("1_xh255")
 input_direction = NodePath("MovementDirection")
 jump_input = "jump"
 lock_acceleration_timer = NodePath("LockAccelerationTimer")
@@ -26,7 +27,7 @@ shape = SubResource("CapsuleShape2D_g3yxv")
 
 [node name="MovementDirection" type="Node" parent="."]
 process_physics_priority = -10
-script = ExtResource("2_4kx3c")
+script = ExtResource("2_rohvy")
 move_left_action = "direction_left"
 move_right_action = "direction_right"
 move_up_action = "direction_up"
@@ -42,23 +43,25 @@ one_shot = true
 [node name="PlayerHurtBox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
-script = ExtResource("5_4ejxa")
+script = ExtResource("3_vv6sb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHurtBox"]
 shape = SubResource("CapsuleShape2D_rmrg0")
 
 [node name="BoostOnHit" type="Node" parent="." node_paths=PackedStringArray("character_body")]
-script = ExtResource("4_oc5kh")
+script = ExtResource("4_u450o")
 character_body = NodePath("..")
 metadata/_custom_type_script = "uid://bsmfg3s82glt1"
 
 [node name="HealthTracker" type="Node" parent="."]
-script = ExtResource("5_rmrg0")
-health = 30.0
-max_health = 30.0
+script = ExtResource("5_21ocv")
 death_event = "player_death"
 health_changed_event = "player_health_changed"
 max_health_changed_event = "player_max_health_changed"
 metadata/_custom_type_script = "uid://dxe8lx58w7ilr"
+
+[node name="HealthPotions" type="Node" parent="."]
+script = ExtResource("6_blb8o")
+metadata/_custom_type_script = "uid://ilyj2eqevm05"
 
 [connection signal="body_entered" from="PlayerHurtBox" to="PlayerHurtBox" method="_on_body_entered"]

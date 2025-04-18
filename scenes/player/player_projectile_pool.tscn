@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://cda5tqxxwg0rk"]
 
-[ext_resource type="Script" uid="uid://dfkne5kgxcvfk" path="res://scripts/player_projectile_pool.gd" id="1_w4aj4"]
-[ext_resource type="Script" uid="uid://dmr8rgopkln6l" path="res://scripts/projectile.gd" id="2_k1xsm"]
-[ext_resource type="Texture2D" uid="uid://c46h4eyjwko4t" path="res://assets/icon.svg" id="3_k1xsm"]
+[ext_resource type="Script" uid="uid://dfkne5kgxcvfk" path="res://scripts/player_projectile_pool.gd" id="1_xr0y6"]
+[ext_resource type="Script" uid="uid://dmr8rgopkln6l" path="res://scripts/projectile.gd" id="2_s00wn"]
+[ext_resource type="Texture2D" uid="uid://c46h4eyjwko4t" path="res://assets/icon.svg" id="3_0bwib"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y3j0m"]
 radius = 0.5
 
 [node name="PlayerProjectilePool" type="Node2D" node_paths=PackedStringArray("projectile")]
-script = ExtResource("1_w4aj4")
+script = ExtResource("1_xr0y6")
 launch_action = "shoot"
 projectile = NodePath("Projectile")
 fully_charged_multiplier = 1.5
@@ -21,7 +21,7 @@ visible = false
 shape = SubResource("CircleShape2D_y3j0m")
 max_results = 1
 collision_mask = 21
-script = ExtResource("2_k1xsm")
+script = ExtResource("2_s00wn")
 sprite = NodePath("Sprite2D")
 launch_speed = 300.0
 gravity = 700.0
@@ -29,4 +29,4 @@ metadata/_custom_type_script = "uid://dmr8rgopkln6l"
 
 [node name="Sprite2D" type="Sprite2D" parent="Projectile"]
 scale = Vector2(0.1875, 0.1875)
-texture = ExtResource("3_k1xsm")
+texture = ExtResource("3_0bwib")
