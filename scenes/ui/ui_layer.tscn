@@ -21,6 +21,7 @@ offset_bottom = 633.0
 script = ExtResource("2_0d208")
 
 [node name="HealthLabel" type="Label" parent="HealthProgressBar"]
+layout_mode = 0
 offset_left = -67.0
 offset_right = -11.0
 offset_bottom = 23.0

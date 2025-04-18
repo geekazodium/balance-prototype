@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://ogbg3yku7hxo"]
+
+[ext_resource type="PackedScene" uid="uid://duilus4m3lllv" path="res://scenes/ui/ui_layer.tscn" id="1_frhop"]
+[ext_resource type="PackedScene" uid="uid://cvosldrvolics" path="res://scenes/player/platformer_character_body.tscn" id="2_3wawu"]
+[ext_resource type="Script" uid="uid://cehaxkqsuxblg" path="res://scripts/follow_camera.gd" id="3_o0xal"]
+[ext_resource type="PackedScene" uid="uid://cda5tqxxwg0rk" path="res://scenes/player/player_projectile_pool.tscn" id="4_akq3i"]
+
+[node name="PlayerNodes" type="Node2D"]
+
+[node name="GameUILayer" parent="." instance=ExtResource("1_frhop")]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_3wawu")]
+collision_layer = 2
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("follow_target")]
+zoom = Vector2(1.5, 1.5)
+script = ExtResource("3_o0xal")
+follow_target = NodePath("../CharacterBody2D")
+
+[node name="PlayerProjectilePool" parent="." node_paths=PackedStringArray("projectile_source") instance=ExtResource("4_akq3i")]
+projectile_source = NodePath("../CharacterBody2D")
+player_momentum_percentage = 0.5
