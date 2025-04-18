@@ -14,7 +14,8 @@ func on_enter_checkpoint(checkpoint: Area2D):
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed(self.use_health_potion_input):
-		self.heal_use_timer.start();
+		if self.current_potions > 0:
+			self.heal_use_timer.start();
 	
 	if Input.is_action_just_released(self.use_health_potion_input):
 		self.heal_use_timer.stop();

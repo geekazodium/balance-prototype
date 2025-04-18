@@ -15,7 +15,6 @@
 
 [node name="PlayerProjectilePool" parent="LockedTransform" node_paths=PackedStringArray("projectile_source") instance=ExtResource("4_akq3i")]
 projectile_source = NodePath("../../CharacterBody2D")
-player_momentum_percentage = 0.5
 
 [node name="GameUILayer" parent="LockedTransform" instance=ExtResource("1_frhop")]
 
@@ -39,7 +38,7 @@ timer_to_display = NodePath("../HealthPotions/HealUseTimer")
 
 [node name="HealthPotions" type="Node" parent="CharacterBody2D" node_paths=PackedStringArray("entity", "heal_use_timer")]
 script = ExtResource("5_nhxao")
-health_regain_amount = 10.0
+health_regain_amount = 30.0
 entity = NodePath("..")
 heal_use_timer = NodePath("HealUseTimer")
 use_health_potion_input = "use_heal"
