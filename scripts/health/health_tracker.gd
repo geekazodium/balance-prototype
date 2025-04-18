@@ -23,7 +23,7 @@ func _ready() -> void:
 ## use this function to change the health of the entity.
 func change_health(amount: int):
 	if self.health > self.last_health_threashold && (self.health + amount) <= 0:
-		self.health = 1.;
+		self.health = 1;
 	else:
 		self.health += amount;
 	if self.health > self.max_health:
@@ -31,7 +31,7 @@ func change_health(amount: int):
 	
 	self.on_health_change();
 	
-	if self.health <= 0.:
+	if self.health <= 0:
 		self.on_death();
 
 ## this function is called when the entity's health changes and drops to zero or less.

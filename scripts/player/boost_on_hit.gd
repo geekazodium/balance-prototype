@@ -12,4 +12,4 @@ func on_projectile_hit(projectile_velocity: Vector2, damage: float):
 		- projectile_velocity
 		- character_body.velocity * hit_deceleration_percent
 	);
-	HealthTracker.get_health_tracker(character_body).change_health(-damage);
+	HealthTracker.get_health_tracker(character_body).change_health(-(damage as int));
