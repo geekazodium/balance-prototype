@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cdtw68smce8m2"]
 
 [ext_resource type="PackedScene" uid="uid://carxnoridwfxh" path="res://scenes/ui/go_to_level_button.tscn" id="1_p0wlc"]
-[ext_resource type="PackedScene" uid="uid://cu738dbcd0f5b" path="res://scenes/game_scene.tscn" id="2_2epne"]
+[ext_resource type="PackedScene" uid="uid://chtyhbmkr1cos" path="res://scenes/levels/tutorial.tscn" id="2_r77uv"]
 
 [node name="LevelSelect" type="Node2D"]
 
@@ -28,14 +28,14 @@ alignment = 1
 [node name="GoToLevelButton" parent="Control/ScrollContainer/VBoxContainer" instance=ExtResource("1_p0wlc")]
 layout_mode = 2
 text = "Level 1"
-level_scene = ExtResource("2_2epne")
+level_scene = ExtResource("2_r77uv")
 
 [node name="GoToLevelButton2" parent="Control/ScrollContainer/VBoxContainer" instance=ExtResource("1_p0wlc")]
 layout_mode = 2
 text = "Level 1"
-level_scene = ExtResource("2_2epne")
+level_scene = ExtResource("2_r77uv")
 
 [node name="GoToLevelButton3" parent="Control/ScrollContainer/VBoxContainer" instance=ExtResource("1_p0wlc")]
 layout_mode = 2
 text = "Your only choice is level 1 :3"
-level_scene = ExtResource("2_2epne")
+level_scene = ExtResource("2_r77uv")
