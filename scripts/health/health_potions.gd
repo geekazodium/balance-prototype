@@ -10,7 +10,7 @@ var current_potions: int = 0;
 @export var use_health_potion_input: String = "";
 
 func on_enter_checkpoint(checkpoint: Area2D):
-	self.current_potions = self.max_potions;
+	self.change_potion_count(self.max_potions - self.current_potions);
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed(self.use_health_potion_input):
@@ -20,5 +20,9 @@ func _physics_process(delta: float) -> void:
 		self.heal_use_timer.stop();
 
 func heal_timer_done() -> void:
-	self.current_potions -= 1;
+	self.change_potion_count(-1);
 	HealthTracker.get_health_tracker(self.entity).change_health(health_regain_amount);
+
+func change_potion_count(amount: int):
+	self.current_potions += amount;
+	EventBus.player_potion_count_changed.emit(self.current_potions);

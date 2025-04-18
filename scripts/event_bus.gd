@@ -17,3 +17,6 @@ signal player_max_health_changed(current: float);
 
 @warning_ignore("unused_signal")
 signal player_death();
+
+@warning_ignore("unused_signal")
+signal player_potion_count_changed(current: int);
