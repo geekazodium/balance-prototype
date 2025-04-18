@@ -1,22 +1,58 @@
-[gd_scene load_steps=5 format=3 uid="uid://ogbg3yku7hxo"]
+[gd_scene load_steps=8 format=3 uid="uid://ogbg3yku7hxo"]
 
 [ext_resource type="PackedScene" uid="uid://duilus4m3lllv" path="res://scenes/ui/ui_layer.tscn" id="1_frhop"]
 [ext_resource type="PackedScene" uid="uid://cvosldrvolics" path="res://scenes/player/platformer_character_body.tscn" id="2_3wawu"]
 [ext_resource type="Script" uid="uid://cehaxkqsuxblg" path="res://scripts/follow_camera.gd" id="3_o0xal"]
 [ext_resource type="PackedScene" uid="uid://cda5tqxxwg0rk" path="res://scenes/player/player_projectile_pool.tscn" id="4_akq3i"]
+[ext_resource type="Script" uid="uid://ilyj2eqevm05" path="res://scripts/health/health_potions.gd" id="5_nhxao"]
+[ext_resource type="Script" uid="uid://2oabxte40wwh" path="res://scripts/ui/timer_progress_bar.gd" id="5_o0xal"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3wawu"]
 
 [node name="PlayerNodes" type="Node2D"]
 
-[node name="GameUILayer" parent="." instance=ExtResource("1_frhop")]
+[node name="LockedTransform" type="Node" parent="."]
+
+[node name="PlayerProjectilePool" parent="LockedTransform" node_paths=PackedStringArray("projectile_source") instance=ExtResource("4_akq3i")]
+projectile_source = NodePath("../../CharacterBody2D")
+player_momentum_percentage = 0.5
+
+[node name="GameUILayer" parent="LockedTransform" instance=ExtResource("1_frhop")]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_3wawu")]
 collision_layer = 2
+
+[node name="CheckpointDetectionBox" type="Area2D" parent="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/CheckpointDetectionBox"]
+shape = SubResource("CircleShape2D_3wawu")
+
+[node name="HealthPotionProgressBar" type="ProgressBar" parent="CharacterBody2D" node_paths=PackedStringArray("timer_to_display")]
+offset_left = -35.0
+offset_top = -17.0
+offset_right = 35.0
+offset_bottom = 10.0
+script = ExtResource("5_o0xal")
+timer_to_display = NodePath("../HealthPotions/HealUseTimer")
+
+[node name="HealthPotions" type="Node" parent="CharacterBody2D" node_paths=PackedStringArray("entity", "heal_use_timer")]
+script = ExtResource("5_nhxao")
+health_regain_amount = 10.0
+entity = NodePath("..")
+heal_use_timer = NodePath("HealUseTimer")
+use_health_potion_input = "use_heal"
+metadata/_custom_type_script = "uid://ilyj2eqevm05"
+
+[node name="HealUseTimer" type="Timer" parent="CharacterBody2D/HealthPotions"]
+process_callback = 0
+one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("follow_target")]
 zoom = Vector2(1.5, 1.5)
 script = ExtResource("3_o0xal")
 follow_target = NodePath("../CharacterBody2D")
 
-[node name="PlayerProjectilePool" parent="." node_paths=PackedStringArray("projectile_source") instance=ExtResource("4_akq3i")]
-projectile_source = NodePath("../CharacterBody2D")
-player_momentum_percentage = 0.5
+[connection signal="area_entered" from="CharacterBody2D/CheckpointDetectionBox" to="CharacterBody2D/HealthPotions" method="on_enter_checkpoint"]
+[connection signal="timeout" from="CharacterBody2D/HealthPotions/HealUseTimer" to="CharacterBody2D/HealthPotions" method="heal_timer_done"]

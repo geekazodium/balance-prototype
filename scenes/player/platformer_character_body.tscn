@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvosldrvolics"]
+[gd_scene load_steps=9 format=3 uid="uid://cvosldrvolics"]
 
 [ext_resource type="Script" uid="uid://b7bbejkvqfik3" path="res://scripts/player/platformer_character_body.gd" id="1_xh255"]
 [ext_resource type="Script" uid="uid://cqavbo808vyhs" path="res://scripts/player/movement_direction.gd" id="2_rohvy"]
 [ext_resource type="Script" uid="uid://cagnbiog7bhsx" path="res://scripts/player/player_hurt_box.gd" id="3_vv6sb"]
 [ext_resource type="Script" uid="uid://bsmfg3s82glt1" path="res://scripts/player/boost_on_hit.gd" id="4_u450o"]
 [ext_resource type="Script" uid="uid://dxe8lx58w7ilr" path="res://scripts/health/health_tracker.gd" id="5_21ocv"]
-[ext_resource type="Script" uid="uid://ilyj2eqevm05" path="res://scripts/health/health_potions.gd" id="6_blb8o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g3yxv"]
 
@@ -59,9 +58,5 @@ death_event = "player_death"
 health_changed_event = "player_health_changed"
 max_health_changed_event = "player_max_health_changed"
 metadata/_custom_type_script = "uid://dxe8lx58w7ilr"
-
-[node name="HealthPotions" type="Node" parent="."]
-script = ExtResource("6_blb8o")
-metadata/_custom_type_script = "uid://ilyj2eqevm05"
 
 [connection signal="body_entered" from="PlayerHurtBox" to="PlayerHurtBox" method="_on_body_entered"]
