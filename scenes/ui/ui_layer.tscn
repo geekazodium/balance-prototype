@@ -15,12 +15,14 @@ offset_bottom = 32.0
 show_percentage = false
 script = ExtResource("1_3eqaf")
 
-[node name="HealthProgressBar" type="ProgressBar" parent="."]
+[node name="HealthProgressBar" type="ProgressBar" parent="." node_paths=PackedStringArray("number_label")]
 offset_left = 80.0
 offset_top = 606.0
 offset_right = 287.0
 offset_bottom = 633.0
+show_percentage = false
 script = ExtResource("2_0d208")
+number_label = NodePath("HealthNumberLabel")
 
 [node name="HealthLabel" type="Label" parent="HealthProgressBar"]
 layout_mode = 0
@@ -28,6 +30,11 @@ offset_left = -67.0
 offset_right = -11.0
 offset_bottom = 23.0
 text = "Health:"
+
+[node name="HealthNumberLabel" type="Label" parent="HealthProgressBar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="DeathMenu" type="VBoxContainer" parent="."]
 process_mode = 2

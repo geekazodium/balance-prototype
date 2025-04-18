@@ -10,10 +10,10 @@ signal player_projectile_charge(max: float, current: float);
 signal player_projectile_launch();
 
 @warning_ignore("unused_signal")
-signal player_health_changed(current: float);
+signal player_health_changed(current: int);
 
 @warning_ignore("unused_signal")
-signal player_max_health_changed(current: float);
+signal player_max_health_changed(current: int);
 
 @warning_ignore("unused_signal")
 signal player_death();
