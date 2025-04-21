@@ -11,6 +11,8 @@ class_name PlayerProjectilePool
 @onready var hold_timer: float = self.max_hold_timer;
 @export var max_hold_timer: float = 0;
 
+@export var aim_stick_deadzone: float = 0.1;
+
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed(self.launch_action) || Input.is_action_just_released(self.launch_action):
 		if self.hold_timer > 0:
@@ -32,7 +34,7 @@ func launch_projectile() -> void:
 			Input.get_joy_axis(joypad, JOY_AXIS_RIGHT_X), 
 			Input.get_joy_axis(joypad, JOY_AXIS_RIGHT_Y)
 		);
-		if direction.is_zero_approx():
+		if direction.length() < self.aim_stick_deadzone:
 			continue;
 		aim_direction = direction;
 	
