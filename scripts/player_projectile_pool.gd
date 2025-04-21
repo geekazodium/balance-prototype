@@ -25,8 +25,19 @@ func _physics_process(delta: float) -> void:
 func launch_projectile() -> void:
 	var charge_percentage: float = (1 - self.hold_timer / self.max_hold_timer);
 	self.hold_timer = self.max_hold_timer;
+	
+	var aim_direction: Vector2 = projectile_source.get_local_mouse_position();
+	for joypad: int in Input.get_connected_joypads():
+		var direction: Vector2 = Vector2(
+			Input.get_joy_axis(joypad, JOY_AXIS_RIGHT_X), 
+			Input.get_joy_axis(joypad, JOY_AXIS_RIGHT_Y)
+		);
+		if direction.is_zero_approx():
+			continue;
+		aim_direction = direction;
+	
 	self.projectile.launch(
-		projectile_source.get_local_mouse_position(), 
+		aim_direction, 
 		projectile_source.global_position + self.projectile_offset,
 		fully_charged_multiplier * charge_percentage + 1
 	);
