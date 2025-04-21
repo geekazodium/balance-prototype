@@ -21,6 +21,7 @@ EventBus="*res://scripts/event_bus.gd"
 [display]
 
 window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [input]
 
