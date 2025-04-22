@@ -20,18 +20,19 @@ func _physics_process(delta: float) -> void:
 	if self.is_colliding():
 		self.on_hit(self.colliding_knockback_immune());
 		self.disable_projectile();
-		return;
-	self.position += delta * self.velocity;
-	self.velocity += Vector2.DOWN * gravity * delta;
-	self.sprite.rotation = atan2(self.velocity.y, self.velocity.x);
-	
-	self.target_position = delta * self.velocity;
+	else:
+		self.position += delta * self.velocity;
+		self.velocity += Vector2.DOWN * gravity * delta;
+		self.sprite.rotation = atan2(self.velocity.y, self.velocity.x);
+		
+		self.target_position = delta * self.velocity;
 
 func launch(direction: Vector2, launch_position: Vector2, speed_multiplier: float) -> void:
 	self.visible = true;
 	self.enabled = true;
 	self.global_position = launch_position;
 	self.velocity = direction.normalized() * self.launch_speed * speed_multiplier;
+	self.target_position = Vector2.ZERO;
 
 func on_hit(knockback_immune: bool) -> void:
 	var hit_damage: int = (self.damage + self.damage_per_speed * self.velocity.length()) as int;
@@ -40,7 +41,6 @@ func on_hit(knockback_immune: bool) -> void:
 func disable_projectile() -> void:
 	self.enabled = false;
 	self.visible = false;
-	self.target_position = Vector2.ZERO;
 
 func colliding_knockback_immune() -> bool:
 	var collision_point: Vector2 = self.to_local(self.get_collision_point(0));

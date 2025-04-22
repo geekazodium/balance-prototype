@@ -19,7 +19,6 @@ projectile_source = NodePath("../../CharacterBody2D")
 [node name="GameUILayer" parent="LockedTransform" instance=ExtResource("1_frhop")]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_3wawu")]
-collision_layer = 2
 
 [node name="CheckpointDetectionBox" type="Area2D" parent="CharacterBody2D"]
 collision_layer = 0
