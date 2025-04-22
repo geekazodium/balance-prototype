@@ -34,7 +34,7 @@ func launch(direction: Vector2, launch_position: Vector2, speed_multiplier: floa
 	self.velocity = direction.normalized() * self.launch_speed * speed_multiplier;
 
 func on_hit(knockback_immune: bool) -> void:
-	var hit_damage: int = self.damage + self.damage_per_speed * self.velocity.length();
+	var hit_damage: int = (self.damage + self.damage_per_speed * self.velocity.length()) as int;
 	EventBus.player_projectile_hit.emit(self.velocity * (0 if knockback_immune else 1), hit_damage);
 
 func disable_projectile() -> void:
