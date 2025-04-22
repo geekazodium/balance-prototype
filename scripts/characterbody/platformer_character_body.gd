@@ -10,14 +10,15 @@ class_name PlatformerCharacterBody
 var jump_timer: float;
 @export var trailing_jump_buffer: float = .1;
 var ground_timer: float;
-@export var input_direction: InputDirection;
-@export var jump_input: String = "";
 
 @export var lock_acceleration_timer: Timer;
 
 var left_direction: Vector2: get = get_left;
-
+var input_direction: Vector2 = Vector2.ZERO;
 var instant_acceleration: Vector2 = Vector2.ZERO;
+
+func set_input_direction(direction: Vector2) -> void:
+	self.input_direction = direction;
 
 func jump() -> void:
 	self.jump_timer = self.leading_jump_buffer;
@@ -26,9 +27,6 @@ func add_instant_acceleration(acceleration: Vector2) -> void:
 	self.instant_acceleration += acceleration;
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed(self.jump_input):
-		self.jump();
-	
 	if self.jump_timer > 0.:
 		self.jump_timer -= delta;
 		
@@ -47,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	var temp_velocity = self.get_velocity();
 	
 	var delta_v = Vector2(0., 0.);
-	var x_axis = self.input_direction.get_direction().x;
+	var x_axis = self.input_direction.x;
 	if x_axis != 0:
 		delta_v += self.get_walk_force(temp_velocity, x_axis, delta);
 	

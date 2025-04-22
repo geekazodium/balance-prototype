@@ -7,7 +7,7 @@ class_name BoostOnHit
 func _ready() -> void:
 	EventBus.player_projectile_hit.connect(self.on_projectile_hit);
 
-func on_projectile_hit(projectile_velocity: Vector2, damage: float):
+func on_projectile_hit(projectile_velocity: Vector2, damage: int):
 	character_body.add_instant_acceleration(
 		- projectile_velocity
 		- character_body.velocity * hit_deceleration_percent

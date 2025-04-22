@@ -1,9 +1,10 @@
 extends Node
 class_name HealthTracker
 
-@export var health: float = 10;
-@export var max_health: float = 10;
-@export var increase_per_second: float = 0;
+@export var health: int = 10;
+@export var max_health: int = 10;
+
+@export var last_health_threashold: int = 3;
 var dead: bool = false;
 
 @export_category("event bus signals")
@@ -11,26 +12,26 @@ var dead: bool = false;
 @export var health_changed_event: String = "";
 @export var max_health_changed_event: String = "";
 
-signal health_changed(current:float);
-signal max_health_changed(current: float);
+signal health_changed(current:int);
+signal max_health_changed(current: int);
 signal death();
 
 func _ready() -> void:
 	self.on_max_health_change();
 	self.on_health_change();
 
-func _physics_process(delta: float) -> void:
-	self.change_health(self.increase_per_second * delta);
-
 ## use this function to change the health of the entity.
-func change_health(amount: float):
-	self.health += amount;
+func change_health(amount: int):
+	if self.health > self.last_health_threashold && (self.health + amount) <= 0:
+		self.health = 1;
+	else:
+		self.health += amount;
 	if self.health > self.max_health:
 		self.health = self.max_health;
 	
 	self.on_health_change();
 	
-	if self.health <= 0.:
+	if self.health <= 0:
 		self.on_death();
 
 ## this function is called when the entity's health changes and drops to zero or less.
@@ -54,7 +55,7 @@ func on_max_health_change():
 	if self.max_health_changed_event != "":
 		EventBus.emit_signal(self.max_health_changed_event, self.max_health);
 
-func add_max_health(amount: float):
+func add_max_health(amount: int):
 	self.health += amount;
 	self.max_health += amount;
 	self.on_max_health_change();

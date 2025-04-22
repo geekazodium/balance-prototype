@@ -1,30 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://duilus4m3lllv"]
+[gd_scene load_steps=5 format=3 uid="uid://duilus4m3lllv"]
 
 [ext_resource type="Script" uid="uid://fin4l0cl18l8" path="res://scripts/ui/charge_progress_bar.gd" id="1_3eqaf"]
 [ext_resource type="Script" uid="uid://cwbyfk0gnj12v" path="res://scripts/ui/player_health_progress_bar.gd" id="2_0d208"]
 [ext_resource type="Script" uid="uid://dk0mtrr5th2d0" path="res://scripts/ui/death_menu.gd" id="3_nhiu8"]
+[ext_resource type="Script" uid="uid://datdbapir8ryv" path="res://scripts/ui/potion_count_progress_bar.gd" id="4_mvntu"]
 
 [node name="GameUILayer" type="CanvasLayer"]
 
 [node name="ChargeProgressBar" type="ProgressBar" parent="."]
-offset_left = 5.0
+offset_left = 6.0
 offset_top = 5.0
-offset_right = 161.0
+offset_right = 162.0
 offset_bottom = 32.0
+show_percentage = false
 script = ExtResource("1_3eqaf")
 
-[node name="HealthProgressBar" type="ProgressBar" parent="."]
+[node name="HealthProgressBar" type="ProgressBar" parent="." node_paths=PackedStringArray("number_label")]
 offset_left = 80.0
 offset_top = 606.0
 offset_right = 287.0
 offset_bottom = 633.0
+show_percentage = false
 script = ExtResource("2_0d208")
+number_label = NodePath("HealthNumberLabel")
 
 [node name="HealthLabel" type="Label" parent="HealthProgressBar"]
+layout_mode = 0
 offset_left = -67.0
 offset_right = -11.0
 offset_bottom = 23.0
 text = "Health:"
+
+[node name="HealthNumberLabel" type="Label" parent="HealthProgressBar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="DeathMenu" type="VBoxContainer" parent="."]
 process_mode = 2
@@ -54,5 +64,22 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 text = "Try Again!"
+
+[node name="PotionCountProgressBar" type="ProgressBar" parent="."]
+offset_left = 80.0
+offset_top = 574.0
+offset_right = 226.0
+offset_bottom = 601.0
+max_value = 2.0
+show_percentage = false
+script = ExtResource("4_mvntu")
+
+[node name="Label" type="Label" parent="PotionCountProgressBar"]
+layout_mode = 0
+offset_left = -74.0
+offset_top = 2.0
+offset_right = -11.0
+offset_bottom = 25.0
+text = "Potions:"
 
 [connection signal="button_up" from="DeathMenu/RetryButton" to="DeathMenu" method="retry_button_clicked"]
