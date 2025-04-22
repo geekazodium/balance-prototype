@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://chtyhbmkr1cos"]
+[gd_scene load_steps=5 format=4 uid="uid://chtyhbmkr1cos"]
 
 [ext_resource type="TileSet" uid="uid://cdm4vyunlsrcn" path="res://assets/floor_tileset.tres" id="1_ub0e1"]
 [ext_resource type="PackedScene" uid="uid://ogbg3yku7hxo" path="res://scenes/player/player_nodes.tscn" id="2_1r3rq"]
 [ext_resource type="PackedScene" uid="uid://dyjvwm06lgsht" path="res://scenes/checkpoint/checkpoint.tscn" id="3_1r3rq"]
+[ext_resource type="PackedScene" uid="uid://de1c7pbg6ffas" path="res://scenes/enemy/enemy_1.tscn" id="4_u4f7j"]
 
 [node name="GameScene" type="Node2D"]
 
@@ -18,3 +19,6 @@ position = Vector2(1380, -680)
 
 [node name="Checkpoint2" parent="." instance=ExtResource("3_1r3rq")]
 position = Vector2(0, -36)
+
+[node name="Enemy1" parent="." instance=ExtResource("4_u4f7j")]
+position = Vector2(-1606, -80)

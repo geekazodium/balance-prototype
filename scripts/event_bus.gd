@@ -1,7 +1,7 @@
 extends Node
 
 @warning_ignore("unused_signal")
-signal player_projectile_hit(projectile_velocity: Vector2, projectile_damage: float);
+signal player_projectile_hit(projectile_velocity: Vector2, projectile_damage: int);
 
 @warning_ignore("unused_signal")
 signal player_projectile_charge(max: float, current: float);

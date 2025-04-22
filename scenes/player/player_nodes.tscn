@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ogbg3yku7hxo"]
 
 [ext_resource type="PackedScene" uid="uid://duilus4m3lllv" path="res://scenes/ui/ui_layer.tscn" id="1_frhop"]
-[ext_resource type="PackedScene" uid="uid://cvosldrvolics" path="res://scenes/player/platformer_character_body.tscn" id="2_3wawu"]
+[ext_resource type="PackedScene" uid="uid://cvosldrvolics" path="res://scenes/player/player_platformer_character_body.tscn" id="2_3wawu"]
 [ext_resource type="Script" uid="uid://cehaxkqsuxblg" path="res://scripts/follow_camera.gd" id="3_o0xal"]
 [ext_resource type="PackedScene" uid="uid://cda5tqxxwg0rk" path="res://scenes/player/player_projectile_pool.tscn" id="4_akq3i"]
 [ext_resource type="Script" uid="uid://ilyj2eqevm05" path="res://scripts/health/health_potions.gd" id="5_nhxao"]
@@ -19,7 +19,6 @@ projectile_source = NodePath("../../CharacterBody2D")
 [node name="GameUILayer" parent="LockedTransform" instance=ExtResource("1_frhop")]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_3wawu")]
-collision_layer = 2
 
 [node name="CheckpointDetectionBox" type="Area2D" parent="CharacterBody2D"]
 collision_layer = 0

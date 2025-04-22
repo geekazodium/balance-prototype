@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cda5tqxxwg0rk"]
 
-[ext_resource type="Script" uid="uid://dfkne5kgxcvfk" path="res://scripts/player_projectile_pool.gd" id="1_xr0y6"]
-[ext_resource type="Script" uid="uid://dmr8rgopkln6l" path="res://scripts/projectile.gd" id="2_s00wn"]
+[ext_resource type="Script" uid="uid://dfkne5kgxcvfk" path="res://scripts/player/projectile/player_projectile_pool.gd" id="1_xr0y6"]
+[ext_resource type="Script" uid="uid://dmr8rgopkln6l" path="res://scripts/player/projectile/projectile.gd" id="2_s00wn"]
 [ext_resource type="Texture2D" uid="uid://c46h4eyjwko4t" path="res://assets/icon.svg" id="3_0bwib"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y3j0m"]
@@ -20,7 +20,7 @@ max_hold_timer = 0.8
 visible = false
 shape = SubResource("CircleShape2D_y3j0m")
 max_results = 1
-collision_mask = 21
+collision_mask = 53
 script = ExtResource("2_s00wn")
 sprite = NodePath("Sprite2D")
 launch_speed = 300.0
