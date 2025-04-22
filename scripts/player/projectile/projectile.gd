@@ -39,9 +39,11 @@ func on_hit(knockback_immune: bool, collider: PlatformerCharacterBody) -> void:
 	var hit_damage: int = (self.damage + self.damage_per_speed * self.velocity.length()) as int;
 	EventBus.player_projectile_hit.emit(self.velocity * (0 if knockback_immune else 1), hit_damage);
 	if collider != null:
+		collider.add_instant_acceleration(self.velocity);
 		var hit_health_tracker: HealthTracker = HealthTracker.get_health_tracker(collider);
 		if hit_health_tracker != null:
 			hit_health_tracker.change_health(-hit_damage);
+			(collider.get_node("./LockAccelerationTimer") as Timer).start();
 
 func disable_projectile() -> void:
 	self.enabled = false;

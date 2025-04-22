@@ -22,5 +22,5 @@ func attack() -> void:
 		return;
 	
 	health_tracker.change_health(-damage);
-	hit.velocity += (collision_local.normalized() + Vector2.UP) * self.knockback;
+	hit.add_instant_acceleration((collision_local.normalized() + Vector2.UP) * self.knockback);
 	(hit.get_node("./LockAccelerationTimer") as Timer).start();
