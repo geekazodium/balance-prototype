@@ -18,7 +18,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if self.is_colliding():
-		self.on_hit(self.colliding_knockback_immune());
+		var collider: PlatformerCharacterBody = self.get_collider(0) as PlatformerCharacterBody;
+		self.on_hit(self.colliding_knockback_immune(), collider);
 		self.disable_projectile();
 	else:
 		self.position += delta * self.velocity;
@@ -34,9 +35,13 @@ func launch(direction: Vector2, launch_position: Vector2, speed_multiplier: floa
 	self.velocity = direction.normalized() * self.launch_speed * speed_multiplier;
 	self.target_position = Vector2.ZERO;
 
-func on_hit(knockback_immune: bool) -> void:
+func on_hit(knockback_immune: bool, collider: PlatformerCharacterBody) -> void:
 	var hit_damage: int = (self.damage + self.damage_per_speed * self.velocity.length()) as int;
 	EventBus.player_projectile_hit.emit(self.velocity * (0 if knockback_immune else 1), hit_damage);
+	if collider != null:
+		var hit_health_tracker: HealthTracker = HealthTracker.get_health_tracker(collider);
+		if hit_health_tracker != null:
+			hit_health_tracker.change_health(-hit_damage);
 
 func disable_projectile() -> void:
 	self.enabled = false;
