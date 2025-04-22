@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://de1c7pbg6ffas"]
+
+[ext_resource type="Script" uid="uid://b7bbejkvqfik3" path="res://scripts/characterbody/platformer_character_body.gd" id="1_d8iib"]
+[ext_resource type="Script" uid="uid://h74cy4a3osw4" path="res://scripts/enemy/enemy_controller.gd" id="2_trh57"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_trh57"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_trh57"]
+radius = 10.0
+height = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d8iib"]
+radius = 291.208
+
+[node name="Enemy1" type="CharacterBody2D" node_paths=PackedStringArray("lock_acceleration_timer")]
+collision_layer = 16
+script = ExtResource("1_d8iib")
+lock_acceleration_timer = NodePath("LockAccelerationTimer")
+metadata/_custom_type_script = "uid://b7bbejkvqfik3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_trh57")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(1, 0.439216, 0.431373, 1)
+mesh = SubResource("CapsuleMesh_trh57")
+
+[node name="LockAccelerationTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DetectionArea2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea2D"]
+shape = SubResource("CircleShape2D_d8iib")
+
+[node name="EnemyController" type="Node" parent="." node_paths=PackedStringArray("character_body", "detection_area")]
+script = ExtResource("2_trh57")
+character_body = NodePath("..")
+detection_area = NodePath("../DetectionArea2D")
+metadata/_custom_type_script = "uid://h74cy4a3osw4"
