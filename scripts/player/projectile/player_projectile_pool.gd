@@ -11,6 +11,8 @@ class_name PlayerProjectilePool
 @onready var hold_timer: float = self.max_hold_timer;
 @export var max_hold_timer: float = 0;
 
+@export var aim_indicator: PlayerAimIndicator;
+
 @export var aim_stick_deadzone: float = 0.1;
 
 func _physics_process(delta: float) -> void:
@@ -18,6 +20,19 @@ func _physics_process(delta: float) -> void:
 		if self.hold_timer > 0:
 			self.hold_timer -= delta;
 			EventBus.player_projectile_charge.emit(self.max_hold_timer,self.max_hold_timer - self.hold_timer);
+		
+		# This method call was sponsored my ikea (THIS IS A JOKE, DO NOT SUE ME)
+		self.aim_indicator.update_predicted_points(
+			self.projectile,
+			self.get_aim_direction(),
+			self.projectile_source, 
+			self.player_momentum_percentage,
+			self.projectile_offset,
+			fully_charged_multiplier * self.get_charge_percentage() + 1
+		);
+		self.aim_indicator.visible = true;
+	else:
+		self.aim_indicator.visible = false;
 	if Input.is_action_just_released(self.launch_action):
 		self.launch_projectile();
 
@@ -25,9 +40,18 @@ func _physics_process(delta: float) -> void:
 		self.hold_timer = self.max_hold_timer;
 
 func launch_projectile() -> void:
-	var charge_percentage: float = (1 - self.hold_timer / self.max_hold_timer);
+	self.projectile.launch(
+		self.get_aim_direction(), 
+		projectile_source.global_position + self.projectile_offset,
+		fully_charged_multiplier * self.get_charge_percentage() + 1
+	);
+	
 	self.hold_timer = self.max_hold_timer;
 	
+	self.projectile.velocity += self.projectile_source.velocity * self.player_momentum_percentage;
+	EventBus.player_projectile_launch.emit();
+
+func get_aim_direction() -> Vector2:
 	var aim_direction: Vector2 = projectile_source.get_local_mouse_position();
 	for joypad: int in Input.get_connected_joypads():
 		var direction: Vector2 = Vector2(
@@ -37,11 +61,7 @@ func launch_projectile() -> void:
 		if direction.length() < self.aim_stick_deadzone:
 			continue;
 		aim_direction = direction;
-	
-	self.projectile.launch(
-		aim_direction, 
-		projectile_source.global_position + self.projectile_offset,
-		fully_charged_multiplier * charge_percentage + 1
-	);
-	self.projectile.velocity += self.projectile_source.velocity * self.player_momentum_percentage;
-	EventBus.player_projectile_launch.emit();
+	return aim_direction.normalized();
+
+func get_charge_percentage() -> float:
+	return 1 - self.hold_timer / self.max_hold_timer;
