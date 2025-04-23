@@ -12,6 +12,8 @@ class_name PlayerProjectile
 
 const KNOCKBACK_IMMUNE_LAYER: int = 5;
 
+signal launched();
+
 func _ready() -> void:
 	self.enabled = false;
 	self.visible = false;
@@ -34,6 +36,7 @@ func launch(direction: Vector2, launch_position: Vector2, speed_multiplier: floa
 	self.global_position = launch_position;
 	self.velocity = direction.normalized() * self.launch_speed * speed_multiplier;
 	self.target_position = Vector2.ZERO;
+	self.launched.emit();
 
 func on_hit(knockback_immune: bool, collider: PlatformerCharacterBody) -> void:
 	var hit_damage: int = (self.damage + self.damage_per_speed * self.velocity.length()) as int;
