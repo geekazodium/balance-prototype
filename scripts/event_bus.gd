@@ -20,3 +20,6 @@ signal player_death();
 
 @warning_ignore("unused_signal")
 signal player_potion_count_changed(current: int);
+
+@warning_ignore("unused_signal")
+signal player_teleport_to_checkpoint(checkpoint: Checkpoint);
