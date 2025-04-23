@@ -20,6 +20,45 @@ height = 30.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_d8iib"]
 radius = 291.208
 
+[sub_resource type="Animation" id="Animation_5ax25"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StateMachine/AttackTargetState/RayCast2D/WarningLine:width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StateMachine/AttackTargetState/RayCast2D/Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StateMachine/AttackTargetState/RayCast2D/WarningLine:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_s6epj"]
 resource_name = "shoot_attack"
 tracks/0/type = "method"
@@ -43,53 +82,62 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.0333333),
+"times": PackedFloat32Array(0.0666667),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [Vector2(0, 0)],
 "method": &"set_input_direction"
 }]
 }
-tracks/2/type = "value"
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("StateMachine/AttackTargetState/RayCast2D:visible")
+tracks/2/path = NodePath("StateMachine/AttackTargetState/RayCast2D")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("StateMachine/AttackTargetState/RayCast2D")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.366667),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"attack"
 }]
 }
-
-[sub_resource type="Animation" id="Animation_5ax25"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("StateMachine/AttackTargetState/RayCast2D:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StateMachine/AttackTargetState/RayCast2D/WarningLine:width")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [10.0, 0.5]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("StateMachine/AttackTargetState/RayCast2D/Sprite2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.366667, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("StateMachine/AttackTargetState/RayCast2D/WarningLine:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5ax25"]
@@ -165,7 +213,6 @@ attack = NodePath("RayCast2D")
 metadata/_custom_type_script = "uid://cb2xwt7u1wg2n"
 
 [node name="RayCast2D" type="RayCast2D" parent="StateMachine/AttackTargetState" node_paths=PackedStringArray("attack_sprite")]
-visible = false
 enabled = false
 target_position = Vector2(1000, 0)
 collision_mask = 7
@@ -174,8 +221,15 @@ attack_sprite = NodePath("Sprite2D")
 damage = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="StateMachine/AttackTargetState/RayCast2D"]
+visible = false
 scale = Vector2(1, 0.09375)
 texture = ExtResource("7_h86pc")
+
+[node name="WarningLine" type="Line2D" parent="StateMachine/AttackTargetState/RayCast2D"]
+visible = false
+points = PackedVector2Array(0, 0, 1000, 0)
+width = 2.0
+default_color = Color(1, 0.321569, 0.317647, 1)
 
 [node name="TargetTracker" type="Node" parent="StateMachine"]
 script = ExtResource("5_co5vk")

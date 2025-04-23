@@ -10,6 +10,8 @@ class_name PlayerProjectile
 @export var damage: float = 2;
 @export var damage_per_speed: float = 0.001;
 
+var acceleration: Vector2 = Vector2.ZERO;
+
 const KNOCKBACK_IMMUNE_LAYER: int = 5;
 
 signal launched();
@@ -21,14 +23,22 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if self.is_colliding():
 		var collider: PlatformerCharacterBody = self.get_collider(0) as PlatformerCharacterBody;
-		self.on_hit(self.colliding_knockback_immune(), collider);
-		self.disable_projectile();
+		if self.colliding_knockback_immune():
+			var norm: Vector2 = self.get_collision_normal(0);
+			var reflected = self.velocity - (2 * self.velocity.dot(norm) * norm);
+			self.velocity = reflected;
+			self.position = self.get_collision_point(0) + norm * .5;
+		else:
+			self.on_hit(false, collider);
+			self.disable_projectile();
+			return;
 	else:
 		self.position += delta * self.velocity;
-		self.velocity += Vector2.DOWN * gravity * delta;
-		self.sprite.rotation = atan2(self.velocity.y, self.velocity.x);
-		
-		self.target_position = delta * self.velocity;
+		self.velocity += (Vector2.DOWN * gravity + self.acceleration) * delta;
+		self.acceleration = Vector2.ZERO;
+	self.sprite.rotation = atan2(self.velocity.y, self.velocity.x);
+	
+	self.target_position = delta * self.velocity;
 
 func launch(direction: Vector2, launch_position: Vector2, speed_multiplier: float) -> void:
 	self.visible = true;
@@ -47,6 +57,9 @@ func on_hit(knockback_immune: bool, collider: PlatformerCharacterBody) -> void:
 		if hit_health_tracker != null:
 			hit_health_tracker.change_health(-hit_damage);
 			(collider.get_node("./LockAccelerationTimer") as Timer).start();
+
+func accelerate(force: Vector2):
+	self.acceleration += force;
 
 func disable_projectile() -> void:
 	self.enabled = false;

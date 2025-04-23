@@ -1,4 +1,6 @@
-extends VBoxContainer
+extends Control
+
+@export var default_button: Button;
 
 func _ready() -> void:
-	(self.get_child(0) as Button).grab_focus();
+	default_button.grab_focus();
