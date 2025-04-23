@@ -34,9 +34,9 @@ static func load_state() -> void:
 	save_state = state;
 	
 @export var checkpoint_flags: Dictionary[StringName, PackedByteArray] = {};
-@export var last_checkpoint_enabled: Dictionary[StringName, int] = {};
+var last_checkpoint: int = 0;
 
-func enable_checkpoint_flag(level: StringName, index: int) -> void:
+func set_checkpoint(level: StringName, index: int) -> void:
 	var byte_index: int = index / 8;
 	var shift: int = index % 8;
 	self.init_if_needed(level);
@@ -44,8 +44,17 @@ func enable_checkpoint_flag(level: StringName, index: int) -> void:
 	
 	self.checkpoint_flags[level][byte_index] |= 1 << shift;
 	
-	self.last_checkpoint_enabled[level] = index;
+	self.last_checkpoint = index;
 	ResourceSaver.save(self,save_state_path);
+
+func get_last_checkpoint() -> int:
+	return self.last_checkpoint;
+
+func is_last_checkpoint(checkpoint: Checkpoint) -> bool:
+	return checkpoint.index == self.get_last_checkpoint();
+
+func reset_last_checkpoint() -> void:
+	self.last_checkpoint = 0;
 
 func get_checkpoint_flag(level: StringName, index: int) -> bool:
 	var byte_index: int = index / 8;
@@ -55,10 +64,6 @@ func get_checkpoint_flag(level: StringName, index: int) -> bool:
 	
 	return (checkpoint_flags[level][byte_index] & (1 << shift)) != 0;
 
-func get_last_enabled_checkpoint(level: StringName) -> int:
-	self.init_if_needed(level);
-	return self.last_checkpoint_enabled[level];
-
 func expand_if_needed(level: StringName, index_to_access: int) -> void:
 	if !(self.checkpoint_flags[level].size() > index_to_access):
 		self.checkpoint_flags[level].resize(index_to_access + 1);
@@ -66,4 +71,3 @@ func expand_if_needed(level: StringName, index_to_access: int) -> void:
 func init_if_needed(level: StringName) -> void:
 	if !self.checkpoint_flags.has(level):
 		self.checkpoint_flags.set(level, PackedByteArray());
-		self.last_checkpoint_enabled.set(level,0);

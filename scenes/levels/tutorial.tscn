@@ -16,11 +16,11 @@ position = Vector2(0, -15)
 
 [node name="Checkpoint" parent="." instance=ExtResource("3_1r3rq")]
 position = Vector2(1380, -680)
+index = 1
 level = &"tutorial"
 
 [node name="Checkpoint2" parent="." instance=ExtResource("3_1r3rq")]
 position = Vector2(0, -36)
-index = 1
 level = &"tutorial"
 
 [node name="Enemy1" parent="." instance=ExtResource("4_u4f7j")]
