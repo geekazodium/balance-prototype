@@ -26,6 +26,7 @@ metadata/_custom_type_script = "uid://b7bbejkvqfik3"
 shape = SubResource("CapsuleShape2D_g3yxv")
 
 [node name="MovementDirection" type="Node" parent="." node_paths=PackedStringArray("character_body")]
+process_mode = 3
 process_physics_priority = -10
 script = ExtResource("2_rohvy")
 move_left_action = "direction_left"

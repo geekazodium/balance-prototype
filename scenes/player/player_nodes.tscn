@@ -16,7 +16,6 @@
 [node name="LockedTransform" type="Node" parent="."]
 
 [node name="PlayerProjectilePool" parent="LockedTransform" node_paths=PackedStringArray("projectile_source", "aim_indicator") instance=ExtResource("4_akq3i")]
-process_physics_priority = 10
 projectile_source = NodePath("../../CharacterBody2D")
 aim_indicator = NodePath("PlayerAimIndicator")
 

@@ -1,25 +1,39 @@
-[gd_scene load_steps=5 format=3 uid="uid://duilus4m3lllv"]
+[gd_scene load_steps=7 format=3 uid="uid://duilus4m3lllv"]
 
 [ext_resource type="Script" uid="uid://fin4l0cl18l8" path="res://scripts/ui/charge_progress_bar.gd" id="1_3eqaf"]
 [ext_resource type="Script" uid="uid://cwbyfk0gnj12v" path="res://scripts/ui/player_health_progress_bar.gd" id="2_0d208"]
 [ext_resource type="Script" uid="uid://dk0mtrr5th2d0" path="res://scripts/ui/death_menu.gd" id="3_nhiu8"]
+[ext_resource type="Script" uid="uid://byp3qwclbkryu" path="res://scripts/ui/pause_menu.gd" id="4_d4ycy"]
 [ext_resource type="Script" uid="uid://datdbapir8ryv" path="res://scripts/ui/potion_count_progress_bar.gd" id="4_mvntu"]
+[ext_resource type="Script" uid="uid://r2vcb01f71rm" path="res://scripts/ui/pause_input_listener.gd" id="5_jqcis"]
 
 [node name="GameUILayer" type="CanvasLayer"]
 
 [node name="ChargeProgressBar" type="ProgressBar" parent="."]
-offset_left = 6.0
-offset_top = 5.0
-offset_right = 162.0
-offset_bottom = 32.0
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = -69.5
+offset_right = 78.0
+offset_bottom = -42.5
+grow_horizontal = 2
+grow_vertical = 2
 show_percentage = false
 script = ExtResource("1_3eqaf")
 
 [node name="HealthProgressBar" type="ProgressBar" parent="." node_paths=PackedStringArray("number_label")]
-offset_left = 80.0
-offset_top = 606.0
-offset_right = 287.0
-offset_bottom = 633.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 88.0
+offset_top = -52.0
+offset_right = 295.0
+offset_bottom = -25.0
+grow_vertical = 0
 show_percentage = false
 script = ExtResource("2_0d208")
 number_label = NodePath("HealthNumberLabel")
@@ -36,7 +50,7 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="DeathMenu" type="VBoxContainer" parent="."]
+[node name="DeathMenu" type="VBoxContainer" parent="." node_paths=PackedStringArray("retry_button")]
 process_mode = 2
 visible = false
 anchors_preset = 8
@@ -51,6 +65,7 @@ offset_bottom = 59.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_nhiu8")
+retry_button = NodePath("RetryButton")
 
 [node name="YouHaveDiedLabel" type="Label" parent="DeathMenu"]
 layout_mode = 2
@@ -65,11 +80,67 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 text = "Try Again!"
 
+[node name="PauseMenu" type="VBoxContainer" parent="." node_paths=PackedStringArray("default_focus_button")]
+process_mode = 2
+process_physics_priority = 100
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = -77.0
+offset_right = 228.0
+offset_bottom = 77.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_d4ycy")
+default_focus_button = NodePath("ContinueButton")
+
+[node name="GamePausedLabel" type="Label" parent="PauseMenu"]
+layout_mode = 2
+text = "Game Paused"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PauseMenu"]
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="PauseMenu"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../RetryButton")
+focus_next = NodePath("../RetryButton")
+text = "Continue"
+
+[node name="RetryButton" type="Button" parent="PauseMenu"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+focus_neighbor_top = NodePath("../ContinueButton")
+focus_neighbor_bottom = NodePath("../ReturnToLevelSelect")
+focus_next = NodePath("../ReturnToLevelSelect")
+focus_previous = NodePath("../ContinueButton")
+text = "Retry From Last Checkpoint"
+
+[node name="ReturnToLevelSelect" type="Button" parent="PauseMenu"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../RetryButton")
+focus_previous = NodePath("../RetryButton")
+text = "Return To Title"
+
+[node name="Node" type="Node" parent="PauseMenu"]
+process_mode = 1
+script = ExtResource("5_jqcis")
+
 [node name="PotionCountProgressBar" type="ProgressBar" parent="."]
-offset_left = 80.0
-offset_top = 574.0
-offset_right = 226.0
-offset_bottom = 601.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 88.0
+offset_top = -83.0
+offset_right = 234.0
+offset_bottom = -56.0
+grow_vertical = 0
 max_value = 2.0
 show_percentage = false
 script = ExtResource("4_mvntu")
@@ -82,4 +153,8 @@ offset_right = -11.0
 offset_bottom = 25.0
 text = "Potions:"
 
-[connection signal="button_up" from="DeathMenu/RetryButton" to="DeathMenu" method="retry_button_clicked"]
+[connection signal="button_up" from="DeathMenu/RetryButton" to="DeathMenu" method="on_retry_button_clicked"]
+[connection signal="button_up" from="PauseMenu/ContinueButton" to="PauseMenu" method="on_continue_pressed"]
+[connection signal="button_up" from="PauseMenu/RetryButton" to="PauseMenu" method="on_retry_pressed"]
+[connection signal="button_up" from="PauseMenu/ReturnToLevelSelect" to="PauseMenu" method="on_return_to_level_select_pressed"]
+[connection signal="pause_game" from="PauseMenu/Node" to="PauseMenu" method="on_pause_game"]

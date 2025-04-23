@@ -1,13 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://cda5tqxxwg0rk"]
+[gd_scene load_steps=7 format=3 uid="uid://cda5tqxxwg0rk"]
 
 [ext_resource type="Script" uid="uid://dfkne5kgxcvfk" path="res://scripts/player/projectile/player_projectile_pool.gd" id="1_xr0y6"]
 [ext_resource type="Script" uid="uid://dmr8rgopkln6l" path="res://scripts/player/projectile/projectile.gd" id="2_s00wn"]
 [ext_resource type="Texture2D" uid="uid://c46h4eyjwko4t" path="res://assets/icon.svg" id="3_0bwib"]
+[ext_resource type="Script" uid="uid://bead8dmkox6pj" path="res://scripts/player/projectile/projectile_trail.gd" id="4_s00wn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y3j0m"]
 radius = 0.5
 
+[sub_resource type="Gradient" id="Gradient_s00wn"]
+offsets = PackedFloat32Array(0.00425532, 1)
+colors = PackedColorArray(0.85098, 0, 0.988235, 0, 1, 1, 1, 1)
+
 [node name="PlayerProjectilePool" type="Node2D" node_paths=PackedStringArray("projectile")]
+process_physics_priority = 3
 script = ExtResource("1_xr0y6")
 launch_action = "shoot"
 projectile = NodePath("Projectile")
@@ -32,3 +38,10 @@ metadata/_custom_type_script = "uid://dmr8rgopkln6l"
 [node name="Sprite2D" type="Sprite2D" parent="Projectile"]
 scale = Vector2(0.1875, 0.1875)
 texture = ExtResource("3_0bwib")
+
+[node name="ProjectileTrail" type="Line2D" parent="Projectile"]
+width = 4.0
+gradient = SubResource("Gradient_s00wn")
+script = ExtResource("4_s00wn")
+
+[connection signal="launched" from="Projectile" to="Projectile/ProjectileTrail" method="on_launch"]
