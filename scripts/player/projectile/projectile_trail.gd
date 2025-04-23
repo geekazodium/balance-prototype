@@ -10,7 +10,7 @@ func on_launch() -> void:
 	self.launched = true;
 	self.last_position = self.global_position;
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if self.launched:
 		var moved_vec: Vector2 = self.to_local(self.last_position);
 		self.last_position = self.global_position;
