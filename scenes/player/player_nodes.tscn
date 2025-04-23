@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ogbg3yku7hxo"]
+[gd_scene load_steps=10 format=3 uid="uid://ogbg3yku7hxo"]
 
 [ext_resource type="PackedScene" uid="uid://duilus4m3lllv" path="res://scenes/ui/ui_layer.tscn" id="1_frhop"]
 [ext_resource type="PackedScene" uid="uid://cvosldrvolics" path="res://scenes/player/player_platformer_character_body.tscn" id="2_3wawu"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cda5tqxxwg0rk" path="res://scenes/player/player_projectile_pool.tscn" id="4_akq3i"]
 [ext_resource type="Script" uid="uid://ilyj2eqevm05" path="res://scripts/health/health_potions.gd" id="5_nhxao"]
 [ext_resource type="Script" uid="uid://2oabxte40wwh" path="res://scripts/ui/timer_progress_bar.gd" id="5_o0xal"]
+[ext_resource type="Script" uid="uid://bhvqevw0nb05i" path="res://scripts/saves/teleport_to_checkpoint.gd" id="8_xag0n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3wawu"]
 
@@ -15,11 +16,12 @@
 [node name="LockedTransform" type="Node" parent="."]
 
 [node name="PlayerProjectilePool" parent="LockedTransform" node_paths=PackedStringArray("projectile_source", "aim_indicator") instance=ExtResource("4_akq3i")]
+process_physics_priority = 10
 projectile_source = NodePath("../../CharacterBody2D")
 aim_indicator = NodePath("PlayerAimIndicator")
 
 [node name="PlayerAimIndicator" type="Line2D" parent="LockedTransform/PlayerProjectilePool"]
-z_index = -2
+z_index = -1
 width = 1.0
 default_color = Color(1.08775e-05, 0.786378, 0.173782, 1)
 script = ExtResource("2_akq3i")
@@ -59,6 +61,11 @@ one_shot = true
 zoom = Vector2(1.5, 1.5)
 script = ExtResource("3_o0xal")
 follow_target = NodePath("../CharacterBody2D")
+
+[node name="TeleportToCheckpoint" type="Node" parent="." node_paths=PackedStringArray("object_to_teleport")]
+script = ExtResource("8_xag0n")
+object_to_teleport = NodePath("../CharacterBody2D")
+metadata/_custom_type_script = "uid://bhvqevw0nb05i"
 
 [connection signal="area_entered" from="CharacterBody2D/CheckpointDetectionBox" to="CharacterBody2D/HealthPotions" method="on_enter_checkpoint"]
 [connection signal="timeout" from="CharacterBody2D/HealthPotions/HealUseTimer" to="CharacterBody2D/HealthPotions" method="heal_timer_done"]
