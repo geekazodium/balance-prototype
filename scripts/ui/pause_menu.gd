@@ -22,6 +22,7 @@ func on_return_to_level_select_pressed() -> void:
 	self.get_tree().call_deferred("change_scene_to_file",LEVEL_SELECT_SCENE);
 
 func _physics_process(_delta: float) -> void:
+	## call unpause only on physics so input relase does not trigger projectile shoot.
 	if self.unpause_call:
 		self.unpause_call = false;
 		self.unpause();
