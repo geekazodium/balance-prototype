@@ -4,24 +4,29 @@
 [ext_resource type="PackedScene" uid="uid://carxnoridwfxh" path="res://scenes/ui/go_to_level_button.tscn" id="1_p0wlc"]
 [ext_resource type="PackedScene" uid="uid://chtyhbmkr1cos" path="res://scenes/levels/tutorial.tscn" id="2_r77uv"]
 
-[node name="LevelSelect" type="Node2D"]
-
-[node name="Control" type="CanvasLayer" parent="."]
-
-[node name="ScrollContainer" type="ScrollContainer" parent="Control"]
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 136.0
-offset_top = 87.0
-offset_right = -111.0
-offset_bottom = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 130.0
+offset_top = 117.0
+offset_right = -128.0
+offset_bottom = -69.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 10
@@ -29,22 +34,36 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer" node_paths=PackedStringArray("default_button")]
 layout_mode = 2
 alignment = 1
 script = ExtResource("1_2epne")
+default_button = NodePath("GoToLevelButton")
 
-[node name="GoToLevelButton" parent="Control/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_p0wlc")]
+[node name="GoToLevelButton" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_p0wlc")]
 layout_mode = 2
 text = "Level 1"
 level_scene = ExtResource("2_r77uv")
 
-[node name="GoToLevelButton2" parent="Control/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_p0wlc")]
+[node name="GoToLevelButton2" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_p0wlc")]
 layout_mode = 2
 text = "Level 1"
 level_scene = ExtResource("2_r77uv")
 
-[node name="GoToLevelButton3" parent="Control/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_p0wlc")]
+[node name="GoToLevelButton3" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_p0wlc")]
 layout_mode = 2
 text = "Your only choice is level 1 :3"
 level_scene = ExtResource("2_r77uv")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.5
+offset_top = 53.0
+offset_right = 100.5
+offset_bottom = 97.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 31
+text = "LEVEL SELECT"
