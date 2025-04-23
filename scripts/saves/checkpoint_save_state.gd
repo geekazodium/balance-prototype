@@ -6,7 +6,6 @@ static var save_state: CheckpointSaveState = null;
 
 static func get_state() -> CheckpointSaveState:
 	if save_state == null:
-		push_warning("CheckpointSaveState: state was not preloaded, may not be good for performance");
 		load_state();
 	return save_state;
 
@@ -37,6 +36,7 @@ static func load_state() -> void:
 var last_checkpoint: int = 0;
 
 func set_checkpoint(level: StringName, index: int) -> void:
+	@warning_ignore("integer_division")
 	var byte_index: int = index / 8;
 	var shift: int = index % 8;
 	self.init_if_needed(level);
@@ -57,6 +57,7 @@ func reset_last_checkpoint() -> void:
 	self.last_checkpoint = 0;
 
 func get_checkpoint_flag(level: StringName, index: int) -> bool:
+	@warning_ignore("integer_division")
 	var byte_index: int = index / 8;
 	var shift: int = index % 8;
 	self.init_if_needed(level);
