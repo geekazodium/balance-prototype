@@ -1,62 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://cda5tqxxwg0rk"]
+[gd_scene load_steps=3 format=3 uid="uid://cda5tqxxwg0rk"]
 
 [ext_resource type="Script" uid="uid://dfkne5kgxcvfk" path="res://scripts/player/projectile/player_projectile_pool.gd" id="1_xr0y6"]
-[ext_resource type="Script" uid="uid://dmr8rgopkln6l" path="res://scripts/player/projectile/projectile.gd" id="2_s00wn"]
-[ext_resource type="Texture2D" uid="uid://c46h4eyjwko4t" path="res://assets/icon.svg" id="3_0bwib"]
-[ext_resource type="Script" uid="uid://bead8dmkox6pj" path="res://scripts/player/projectile/projectile_trail.gd" id="4_s00wn"]
-[ext_resource type="Script" uid="uid://cjw125odxylqs" path="res://scripts/player/projectile/homing_area.gd" id="5_0bwib"]
+[ext_resource type="PackedScene" uid="uid://bi8kuyodsn0x8" path="res://scenes/player/player_projectile.tscn" id="2_o2cp4"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_y3j0m"]
-radius = 0.1
-
-[sub_resource type="Gradient" id="Gradient_s00wn"]
-offsets = PackedFloat32Array(0.00425532, 1)
-colors = PackedColorArray(0.85098, 0, 0.988235, 0, 1, 1, 1, 1)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_s00wn"]
-radius = 200.0
-
-[node name="PlayerProjectilePool" type="Node2D" node_paths=PackedStringArray("projectile")]
+[node name="PlayerProjectilePool" type="Node2D" node_paths=PackedStringArray("projectiles")]
 process_physics_priority = 3
 script = ExtResource("1_xr0y6")
 launch_action = "shoot"
-projectile = NodePath("Projectile")
 fully_charged_multiplier = 1.5
 projectile_offset = Vector2(0, -10)
 player_momentum_percentage = 0.5
 max_hold_timer = 0.8
+projectile_scene = ExtResource("2_o2cp4")
+projectiles = [NodePath("Projectile")]
 
-[node name="Projectile" type="ShapeCast2D" parent="." node_paths=PackedStringArray("sprite")]
-visible = false
-shape = SubResource("CircleShape2D_y3j0m")
-max_results = 1
-collision_mask = 53
-script = ExtResource("2_s00wn")
-sprite = NodePath("Sprite2D")
-launch_speed = 300.0
-gravity = 700.0
-damage = 0.0
-damage_per_speed = 0.01
-metadata/_custom_type_script = "uid://dmr8rgopkln6l"
-
-[node name="Sprite2D" type="Sprite2D" parent="Projectile"]
-scale = Vector2(0.1875, 0.1875)
-texture = ExtResource("3_0bwib")
-
-[node name="ProjectileTrail" type="Line2D" parent="Projectile"]
-width = 4.0
-gradient = SubResource("Gradient_s00wn")
-script = ExtResource("4_s00wn")
-
-[node name="HomingArea" type="Area2D" parent="Projectile" node_paths=PackedStringArray("projectile")]
-process_physics_priority = -1
-collision_layer = 0
-collision_mask = 16
-script = ExtResource("5_0bwib")
-projectile = NodePath("..")
-homing_force = 14.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Projectile/HomingArea"]
-shape = SubResource("CircleShape2D_s00wn")
-
-[connection signal="launched" from="Projectile" to="Projectile/ProjectileTrail" method="on_launch"]
+[node name="Projectile" parent="." instance=ExtResource("2_o2cp4")]
