@@ -5,6 +5,7 @@ class_name FollowCamera
 
 @export var boundary_center: Node2D = null;
 @export var boundary_radius: float = 0;
+@export var offset_weight: float = .5;
 
 func _ready() -> void:
 	EventBus.camera_target_added.connect(self.add_target);
@@ -16,7 +17,7 @@ func _process(_delta: float) -> void:
 	for target in self.follow_targets:
 		sum += element_weight * target.global_position;
 	
-	var offset_vec = self.boundary_center.to_local(sum);
+	var offset_vec = self.boundary_center.to_local(sum) * self.offset_weight;
 	
 	if !offset_vec.is_zero_approx():
 		var magnitude: float = offset_vec.length();

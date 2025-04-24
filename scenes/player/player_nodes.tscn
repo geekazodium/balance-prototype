@@ -57,12 +57,14 @@ process_callback = 0
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("follow_targets", "boundary_center")]
+process_priority = 10
 position_smoothing_enabled = true
-position_smoothing_speed = 20.0
+position_smoothing_speed = 17.0
 script = ExtResource("3_o0xal")
 follow_targets = [NodePath("../CharacterBody2D")]
 boundary_center = NodePath("../CharacterBody2D")
-boundary_radius = 100.0
+boundary_radius = 150.0
+offset_weight = 0.2
 
 [node name="TeleportToCheckpoint" type="Node" parent="." node_paths=PackedStringArray("object_to_teleport")]
 script = ExtResource("8_xag0n")
