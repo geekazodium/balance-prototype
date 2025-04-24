@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdtw68smce8m2"]
+[gd_scene load_steps=6 format=3 uid="uid://cdtw68smce8m2"]
 
 [ext_resource type="Script" uid="uid://cb3aq0i45y32a" path="res://scripts/ui/level_choices_container.gd" id="1_2epne"]
 [ext_resource type="PackedScene" uid="uid://carxnoridwfxh" path="res://scenes/ui/go_to_level_button.tscn" id="1_p0wlc"]
 [ext_resource type="PackedScene" uid="uid://chtyhbmkr1cos" path="res://scenes/levels/tutorial.tscn" id="2_r77uv"]
 [ext_resource type="PackedScene" uid="uid://dg2kl0u68vuuo" path="res://scenes/levels/level1.tscn" id="3_2epne"]
+[ext_resource type="PackedScene" uid="uid://ce0ylbruhj013" path="res://scenes/levels/level2.tscn" id="5_chg43"]
 
 [node name="LevelSelect" type="Control"]
 layout_mode = 3
@@ -55,7 +56,7 @@ level_scene = ExtResource("3_2epne")
 [node name="GoToLevelButton3" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_p0wlc")]
 layout_mode = 2
 text = "Level 2"
-level_scene = ExtResource("2_r77uv")
+level_scene = ExtResource("5_chg43")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
