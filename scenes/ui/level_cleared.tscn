@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3tu7fcvsorr"]
+
+[ext_resource type="PackedScene" uid="uid://carxnoridwfxh" path="res://scenes/ui/go_to_level_button.tscn" id="1_6wpk3"]
+[ext_resource type="Script" uid="uid://cb3aq0i45y32a" path="res://scripts/ui/level_choices_container.gd" id="1_cm4r2"]
+[ext_resource type="PackedScene" uid="uid://cdtw68smce8m2" path="res://scenes/level_select.tscn" id="3_0xlbh"]
+[ext_resource type="Script" uid="uid://cj73uy4wipjpg" path="res://scripts/ui/next_level_button.gd" id="3_152kk"]
+
+[node name="LevelCleared" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." node_paths=PackedStringArray("default_button")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -392.0
+offset_top = -88.0
+offset_right = 393.0
+offset_bottom = 217.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cm4r2")
+default_button = NodePath("NextLevel")
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Level Cleared!"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="NextLevel" parent="VBoxContainer" instance=ExtResource("1_6wpk3")]
+layout_mode = 2
+text = "Next Level"
+
+[node name="NextLevel" type="Node" parent="VBoxContainer/NextLevel"]
+script = ExtResource("3_152kk")
+
+[node name="BackToLevelSelect" parent="VBoxContainer" instance=ExtResource("1_6wpk3")]
+layout_mode = 2
+text = "Level Select"
+level_scene = ExtResource("3_0xlbh")

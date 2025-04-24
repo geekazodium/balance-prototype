@@ -1,4 +1,5 @@
 extends Button
+class_name GoToNextSceneButton
 
 @export var level_scene: PackedScene;
 

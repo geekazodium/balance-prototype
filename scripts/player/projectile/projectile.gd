@@ -9,6 +9,9 @@ class_name PlayerProjectile
 
 @export var damage: float = 2;
 @export var damage_per_speed: float = 0.001;
+@export var lifetime: float = 5;
+
+var lifetime_current: float = 0;
 
 var acceleration: Vector2 = Vector2.ZERO;
 
@@ -21,6 +24,8 @@ func _ready() -> void:
 	self.visible = false;
 
 func _physics_process(delta: float) -> void:
+	if self.enabled == false:
+		return;
 	if self.is_colliding():
 		var collider: PlatformerCharacterBody = self.get_collider(0) as PlatformerCharacterBody;
 		if self.colliding_knockback_immune():
@@ -39,14 +44,26 @@ func _physics_process(delta: float) -> void:
 	self.sprite.rotation = atan2(self.velocity.y, self.velocity.x);
 	
 	self.target_position = delta * self.velocity;
+	if self.lifetime_current > 0.:
+		self.lifetime_current -= delta;
+	else:
+		if self.enabled:
+			self.disable_projectile();
+
+func visuals_initialize() -> void:
+	self.visible = true;
+	EventBus.camera_target_added.emit(self);
 
 func launch(direction: Vector2, launch_position: Vector2, speed_multiplier: float) -> void:
-	self.visible = true;
 	self.enabled = true;
+	self.acceleration = Vector2.ZERO;
 	self.global_position = launch_position;
 	self.velocity = direction.normalized() * self.launch_speed * speed_multiplier;
 	self.target_position = Vector2.ZERO;
 	self.launched.emit();
+	self.lifetime_current = self.lifetime;
+	self.visuals_initialize();
+	self.reset_physics_interpolation();
 
 func on_hit(knockback_immune: bool, collider: PlatformerCharacterBody) -> void:
 	var hit_damage: int = (self.damage + self.damage_per_speed * self.velocity.length()) as int;
@@ -62,6 +79,7 @@ func accelerate(force: Vector2):
 	self.acceleration += force;
 
 func disable_projectile() -> void:
+	EventBus.camera_target_removed.emit(self);
 	self.enabled = false;
 	self.visible = false;
 
