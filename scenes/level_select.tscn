@@ -43,7 +43,8 @@ default_button = NodePath("GoToLevelButton")
 
 [node name="GoToLevelButton" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_p0wlc")]
 layout_mode = 2
-text = "Level 1"
+text = "Tutorial
+"
 level_scene = ExtResource("2_r77uv")
 
 [node name="GoToLevelButton2" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_p0wlc")]
@@ -53,7 +54,7 @@ level_scene = ExtResource("3_2epne")
 
 [node name="GoToLevelButton3" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_p0wlc")]
 layout_mode = 2
-text = "Your only choice is level 1 :3"
+text = "Level 2"
 level_scene = ExtResource("2_r77uv")
 
 [node name="Label" type="Label" parent="."]
