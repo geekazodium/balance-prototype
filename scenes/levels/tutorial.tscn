@@ -44,6 +44,7 @@ level = &"tutorial"
 
 [node name="LevelExit" parent="." instance=ExtResource("4_1wklo")]
 position = Vector2(2638, -1897)
+next_scene = "res://scenes/levels/tutorial.tscn"
 
 [node name="Enemy1" parent="." instance=ExtResource("4_u4f7j")]
 position = Vector2(1447, -1584)

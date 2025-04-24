@@ -34,6 +34,7 @@ static func load_state() -> void:
 	
 @export var checkpoint_flags: Dictionary[StringName, PackedByteArray] = {};
 var last_checkpoint: int = 0;
+var next_level: String = "";
 
 func set_checkpoint(level: StringName, index: int) -> void:
 	@warning_ignore("integer_division")
