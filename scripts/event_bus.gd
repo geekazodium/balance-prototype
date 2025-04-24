@@ -26,3 +26,9 @@ signal player_teleport_to_checkpoint(checkpoint: Checkpoint);
 
 @warning_ignore("unused_signal")
 signal unpause();
+
+@warning_ignore("unused_signal")
+signal camera_target_added(target: Node2D);
+
+@warning_ignore("unused_signal")
+signal camera_target_removed(target: Node2D);

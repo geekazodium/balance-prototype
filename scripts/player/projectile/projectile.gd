@@ -47,6 +47,7 @@ func launch(direction: Vector2, launch_position: Vector2, speed_multiplier: floa
 	self.velocity = direction.normalized() * self.launch_speed * speed_multiplier;
 	self.target_position = Vector2.ZERO;
 	self.launched.emit();
+	EventBus.camera_target_added.emit(self);
 
 func on_hit(knockback_immune: bool, collider: PlatformerCharacterBody) -> void:
 	var hit_damage: int = (self.damage + self.damage_per_speed * self.velocity.length()) as int;
@@ -62,6 +63,7 @@ func accelerate(force: Vector2):
 	self.acceleration += force;
 
 func disable_projectile() -> void:
+	EventBus.camera_target_removed.emit(self);
 	self.enabled = false;
 	self.visible = false;
 
