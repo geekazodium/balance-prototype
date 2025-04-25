@@ -1,0 +1,5 @@
+The project's assets under the assets folder are not licensed under the same license as the rest
+of the project, and are instead licensed under the terms of their respective creators.
+
+This file does not grant of permissions to use the art assets. Please contact their respective creators
+for clarifications on terms of use of those assets.
