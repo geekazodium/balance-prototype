@@ -17,6 +17,8 @@ var left_direction: Vector2: get = get_left;
 var input_direction: Vector2 = Vector2.ZERO;
 var instant_acceleration: Vector2 = Vector2.ZERO;
 
+signal jumped();
+
 func set_input_direction(direction: Vector2) -> void:
 	self.input_direction = direction;
 
@@ -79,6 +81,7 @@ func get_reverse_boost(temp_velocity: Vector2, x_input: float) -> Vector2:
 	return Vector2.ZERO;
 
 func apply_jump(temp_velocity: Vector2) -> void:
+	self.jumped.emit();
 	self.jump_timer = 0.;
 	self.ground_timer = 0.;
 	self.add_instant_acceleration(
