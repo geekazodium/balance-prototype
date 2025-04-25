@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://ilyj2eqevm05" path="res://scripts/health/health_potions.gd" id="5_nhxao"]
 [ext_resource type="Script" uid="uid://2oabxte40wwh" path="res://scripts/ui/timer_progress_bar.gd" id="5_o0xal"]
 [ext_resource type="SpriteFrames" uid="uid://bqcntev4ihk1i" path="res://assets/player/player_sprite_frames.tres" id="7_gcose"]
-[ext_resource type="Script" uid="uid://b3hg1is8vp7gh" path="res://scripts/player/autoplay_animated_sprite.gd" id="8_ko782"]
+[ext_resource type="Script" uid="uid://b3hg1is8vp7gh" path="res://scripts/player/player_animated_sprite.gd" id="8_ko782"]
 [ext_resource type="Script" uid="uid://bhvqevw0nb05i" path="res://scripts/saves/teleport_to_checkpoint.gd" id="8_xag0n"]
 [ext_resource type="Script" uid="uid://bjohenywj35c1" path="res://scripts/player/player_anim_tree.gd" id="9_jmc7e"]
 
@@ -396,12 +396,14 @@ metadata/_custom_type_script = "uid://ilyj2eqevm05"
 process_callback = 0
 one_shot = true
 
-[node name="PlayerSprite" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="CharacterBody2D" node_paths=PackedStringArray("character_body")]
 position = Vector2(0, -5)
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("7_gcose")
 flip_h = true
 script = ExtResource("8_ko782")
+character_body = NodePath("..")
+y_vel_sensitivity = 0.035
 
 [node name="AnimationTree" type="AnimationTree" parent="CharacterBody2D" node_paths=PackedStringArray("character_body", "projectile_pool")]
 tree_root = SubResource("AnimationNodeStateMachine_1jo44")
