@@ -15,9 +15,11 @@ position = Vector2(27, -127)
 
 [node name="Checkpoint2" parent="." instance=ExtResource("3_dd0lh")]
 position = Vector2(354, -1113)
+index = 1
 
 [node name="Checkpoint1" parent="." instance=ExtResource("3_dd0lh")]
 position = Vector2(2116, -1273)
+index = 2
 
 [node name="Enemy1" parent="." instance=ExtResource("4_bfxgj")]
 position = Vector2(3619, -928)
@@ -39,6 +41,7 @@ position = Vector2(-792, -438)
 
 [node name="Checkpoint3" parent="." instance=ExtResource("3_dd0lh")]
 position = Vector2(5523, -1721)
+index = 3
 
 [node name="LevelExit" parent="." instance=ExtResource("5_dywbp")]
 position = Vector2(7032, -2091)
