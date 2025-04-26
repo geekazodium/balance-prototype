@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://chtyhbmkr1cos"]
+[gd_scene load_steps=7 format=4 uid="uid://chtyhbmkr1cos"]
 
-[ext_resource type="TileSet" uid="uid://cdm4vyunlsrcn" path="res://assets/floor_tileset.tres" id="1_1wklo"]
+[ext_resource type="TileSet" uid="uid://cdm4vyunlsrcn" path="res://assets/level/floor_tileset.tres" id="1_ub0e1"]
 [ext_resource type="PackedScene" uid="uid://ogbg3yku7hxo" path="res://scenes/player/player_nodes.tscn" id="2_ub0e1"]
 [ext_resource type="PackedScene" uid="uid://dyjvwm06lgsht" path="res://scenes/checkpoint/checkpoint.tscn" id="3_1r3rq"]
 [ext_resource type="PackedScene" uid="uid://de1c7pbg6ffas" path="res://scenes/enemy/enemy_1.tscn" id="4_u4f7j"]
+[ext_resource type="PackedScene" uid="uid://bsc4670nmmmoy" path="res://scenes/postprocess/post_processing.tscn" id="6_7ac3l"]
 [ext_resource type="PackedScene" uid="uid://2pi7ltwtcyv3" path="res://scenes/checkpoint/level_exit.tscn" id="5_1wklo"]
 
 [node name="TileMapLayer" type="TileMapLayer"]
@@ -52,3 +53,5 @@ position = Vector2(2339, 236)
 [node name="Checkpoint8" parent="." instance=ExtResource("3_1r3rq")]
 position = Vector2(2307, -691)
 index = 7
+
+[node name="PostProcessing" parent="." instance=ExtResource("6_7ac3l")]

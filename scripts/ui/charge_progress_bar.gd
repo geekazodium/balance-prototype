@@ -1,4 +1,4 @@
-extends ProgressBar
+extends TextureProgressBar
 
 func _ready():
 	EventBus.player_projectile_charge.connect(self.on_projectile_charging);

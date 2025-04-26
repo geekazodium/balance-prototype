@@ -1,54 +1,72 @@
-[gd_scene load_steps=7 format=3 uid="uid://duilus4m3lllv"]
+[gd_scene load_steps=12 format=3 uid="uid://duilus4m3lllv"]
 
 [ext_resource type="Script" uid="uid://fin4l0cl18l8" path="res://scripts/ui/charge_progress_bar.gd" id="1_3eqaf"]
+[ext_resource type="Texture2D" uid="uid://c5da3xqsojne5" path="res://assets/ui/charge_over.png" id="1_jj6jx"]
 [ext_resource type="Script" uid="uid://cwbyfk0gnj12v" path="res://scripts/ui/player_health_progress_bar.gd" id="2_0d208"]
+[ext_resource type="Texture2D" uid="uid://rxfe6d42o8u4" path="res://assets/ui/health_bar_over.png" id="2_3s0y6"]
 [ext_resource type="Script" uid="uid://dk0mtrr5th2d0" path="res://scripts/ui/death_menu.gd" id="3_nhiu8"]
+[ext_resource type="Texture2D" uid="uid://b5jixr3o60fdx" path="res://assets/ui/health_bar_fill.png" id="3_yg43r"]
 [ext_resource type="Script" uid="uid://byp3qwclbkryu" path="res://scripts/ui/pause_menu.gd" id="4_d4ycy"]
 [ext_resource type="Script" uid="uid://datdbapir8ryv" path="res://scripts/ui/potion_count_progress_bar.gd" id="4_mvntu"]
 [ext_resource type="Script" uid="uid://r2vcb01f71rm" path="res://scripts/ui/pause_input_listener.gd" id="5_jqcis"]
+[ext_resource type="Texture2D" uid="uid://crv7y6wwyiw0i" path="res://assets/ui/potion_1.png" id="8_jq4xh"]
+[ext_resource type="Texture2D" uid="uid://c2qibely17hsn" path="res://assets/ui/potion_2.png" id="9_jj6jx"]
 
 [node name="GameUILayer" type="CanvasLayer"]
+layer = 3
 
-[node name="ChargeProgressBar" type="ProgressBar" parent="."]
+[node name="ChargeProgressBar" type="TextureProgressBar" parent="."]
 visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -78.0
-offset_top = -69.5
-offset_right = 78.0
-offset_bottom = -42.5
-grow_horizontal = 2
-grow_vertical = 2
-show_percentage = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -128.0
+offset_right = -136.0
+offset_bottom = -91.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(3, 3)
+step = 0.001
+value = 9.0
+texture_over = ExtResource("1_jj6jx")
+texture_progress = ExtResource("3_yg43r")
+texture_progress_offset = Vector2(3, 24)
 script = ExtResource("1_3eqaf")
 
-[node name="HealthProgressBar" type="ProgressBar" parent="." node_paths=PackedStringArray("number_label")]
+[node name="HealthProgressBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("number_label")]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 88.0
-offset_top = -52.0
-offset_right = 295.0
-offset_bottom = -25.0
+offset_left = 8.0
+offset_top = -126.0
+offset_right = 72.0
+offset_bottom = -89.0
 grow_vertical = 0
-show_percentage = false
+scale = Vector2(3, 3)
+texture_over = ExtResource("2_3s0y6")
+texture_progress = ExtResource("3_yg43r")
+texture_progress_offset = Vector2(3, 24)
 script = ExtResource("2_0d208")
 number_label = NodePath("HealthNumberLabel")
 
-[node name="HealthLabel" type="Label" parent="HealthProgressBar"]
-layout_mode = 0
-offset_left = -67.0
-offset_right = -11.0
-offset_bottom = 23.0
-text = "Health:"
-
 [node name="HealthNumberLabel" type="Label" parent="HealthProgressBar"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -6.66668
+offset_top = -14.3332
+offset_right = 33.3333
+offset_bottom = 8.66678
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.333, 0.333)
+horizontal_alignment = 1
 
 [node name="DeathMenu" type="VBoxContainer" parent="." node_paths=PackedStringArray("retry_button")]
 process_mode = 2
@@ -132,26 +150,20 @@ text = "Return To Title"
 process_mode = 1
 script = ExtResource("5_jqcis")
 
-[node name="PotionCountProgressBar" type="ProgressBar" parent="."]
+[node name="PotionCountProgressBar" type="TextureProgressBar" parent="."]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 88.0
-offset_top = -83.0
-offset_right = 234.0
-offset_bottom = -56.0
+offset_left = 8.0
+offset_top = -126.0
+offset_right = 72.0
+offset_bottom = -89.0
 grow_vertical = 0
+scale = Vector2(3, 3)
 max_value = 2.0
-show_percentage = false
+texture_over = ExtResource("8_jq4xh")
+texture_progress = ExtResource("9_jj6jx")
 script = ExtResource("4_mvntu")
-
-[node name="Label" type="Label" parent="PotionCountProgressBar"]
-layout_mode = 0
-offset_left = -74.0
-offset_top = 2.0
-offset_right = -11.0
-offset_bottom = 25.0
-text = "Potions:"
 
 [connection signal="button_up" from="DeathMenu/RetryButton" to="DeathMenu" method="on_retry_button_clicked"]
 [connection signal="button_up" from="PauseMenu/ContinueButton" to="PauseMenu" method="on_continue_pressed"]

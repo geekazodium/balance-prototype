@@ -12,4 +12,5 @@ func on_projectile_hit(projectile_velocity: Vector2, damage: int):
 		- projectile_velocity
 		- character_body.velocity * hit_deceleration_percent
 	);
+	EventBus.spawn_distortion.emit(self.character_body.global_position, projectile_velocity.normalized());
 	HealthTracker.get_health_tracker(character_body).change_health(-damage);

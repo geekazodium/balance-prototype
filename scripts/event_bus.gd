@@ -32,3 +32,6 @@ signal camera_target_added(target: Node2D);
 
 @warning_ignore("unused_signal")
 signal camera_target_removed(target: Node2D);
+
+@warning_ignore("unused_signal")
+signal spawn_distortion(position: Vector2, direction: Vector2);

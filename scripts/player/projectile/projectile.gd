@@ -67,6 +67,7 @@ func launch(direction: Vector2, launch_position: Vector2, speed_multiplier: floa
 
 func on_hit(knockback_immune: bool, collider: PlatformerCharacterBody) -> void:
 	var hit_damage: int = (self.damage + self.damage_per_speed * self.velocity.length()) as int;
+	EventBus.spawn_distortion.emit(self.global_position, -self.velocity.normalized());
 	EventBus.player_projectile_hit.emit(self.velocity * (0 if knockback_immune else 1), hit_damage);
 	if collider != null:
 		collider.add_instant_acceleration(self.velocity);
