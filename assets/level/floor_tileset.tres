@@ -9,13 +9,15 @@ texture = ExtResource("1_wwdix")
 1:0/0 = 0
 1:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -6.47491, -8, -6.47491)
 2:0/0/physics_layer_0/polygon_0/one_way = true
 0:1/0 = 0
 0:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:1/0 = 0
 1:1/0/physics_layer_3/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -6.47491, -8, -6.47491)
+2:1/0/physics_layer_0/polygon_0/one_way = true
 2:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:1/0/physics_layer_2/polygon_0/one_way = true
 
