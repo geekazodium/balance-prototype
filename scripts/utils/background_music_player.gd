@@ -13,9 +13,9 @@ func play_stream_loop(new_stream: AudioStream, restart: bool = true) -> void:
 	if camera == null:
 		self.global_position = Vector2.ZERO;
 	else:
-		self.global_position = camera.get_screen_center_position();
+		self.attenuation = 0;
 	self.bus = "Music";
 	self.play();
 
 func on_finish() -> void:
-	self.play();
+	self.call_deferred("play");
