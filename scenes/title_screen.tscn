@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://0npnl2ltkt6k"]
+[gd_scene load_steps=5 format=3 uid="uid://0npnl2ltkt6k"]
 
 [ext_resource type="Script" uid="uid://cb3aq0i45y32a" path="res://scripts/ui/level_choices_container.gd" id="1_s4lrb"]
 [ext_resource type="PackedScene" uid="uid://carxnoridwfxh" path="res://scenes/ui/go_to_level_button.tscn" id="1_sa3yf"]
 [ext_resource type="PackedScene" uid="uid://cdtw68smce8m2" path="res://scenes/level_select.tscn" id="2_s4lrb"]
+[ext_resource type="Texture2D" uid="uid://ctr6xefffe4uq" path="res://assets/ui/menus/title_screen.webp" id="4_mgrm8"]
 
 [node name="TitleScene" type="Control" node_paths=PackedStringArray("default_button")]
 layout_mode = 3
@@ -14,33 +15,24 @@ grow_vertical = 2
 script = ExtResource("1_s4lrb")
 default_button = NodePath("GoToLevelButton")
 
-[node name="Label" type="Label" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -100.5
-offset_top = 53.0
-offset_right = 100.5
-offset_bottom = 97.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 31
-text = "Title Screen"
-horizontal_alignment = 1
+grow_vertical = 2
+texture = ExtResource("4_mgrm8")
+expand_mode = 4
+stretch_mode = 5
 
 [node name="GoToLevelButton" parent="." instance=ExtResource("1_sa3yf")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -671.0
-offset_top = -397.5
-offset_right = 671.0
-offset_bottom = 397.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"FlatButton"
-text = "CLICK TO START"
+text = ""
 level_scene = ExtResource("2_s4lrb")

@@ -46,6 +46,7 @@ index = 3
 
 [node name="LevelExit" parent="." instance=ExtResource("5_dywbp")]
 position = Vector2(7032, -2091)
+next_scene = "res://scenes/levels/level2.tscn"
 
 [node name="Enemy6" parent="." instance=ExtResource("4_bfxgj")]
 position = Vector2(7030, -1642)
