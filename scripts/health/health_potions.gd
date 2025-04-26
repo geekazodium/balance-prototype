@@ -19,9 +19,9 @@ func _physics_process(_delta: float) -> void:
 			return;
 		if self.current_potions > 0:
 			self.heal_use_timer.start();
+			self.change_potion_count(-1);
 
 func heal_timer_done() -> void:
-	self.change_potion_count(-1);
 	HealthTracker.get_health_tracker(self.entity).change_health(health_regain_amount as int);
 
 func change_potion_count(amount: int):
