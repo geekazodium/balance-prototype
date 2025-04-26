@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://0npnl2ltkt6k"]
+[gd_scene load_steps=7 format=3 uid="uid://0npnl2ltkt6k"]
 
 [ext_resource type="Script" uid="uid://cb3aq0i45y32a" path="res://scripts/ui/level_choices_container.gd" id="1_s4lrb"]
 [ext_resource type="PackedScene" uid="uid://carxnoridwfxh" path="res://scenes/ui/go_to_level_button.tscn" id="1_sa3yf"]
+[ext_resource type="AudioStream" uid="uid://b2yuu542ry70i" path="res://assets/sound/mus_menu.wav" id="2_dc4i4"]
 [ext_resource type="PackedScene" uid="uid://cdtw68smce8m2" path="res://scenes/level_select.tscn" id="2_s4lrb"]
 [ext_resource type="Texture2D" uid="uid://ctr6xefffe4uq" path="res://assets/ui/menus/title_screen.webp" id="4_mgrm8"]
+[ext_resource type="Script" uid="uid://cem7fitujlcbv" path="res://scripts/utils/background_music.gd" id="5_e54dn"]
 
 [node name="TitleScene" type="Control" node_paths=PackedStringArray("default_button")]
 layout_mode = 3
@@ -36,3 +38,8 @@ grow_vertical = 2
 theme_type_variation = &"FlatButton"
 text = ""
 level_scene = ExtResource("2_s4lrb")
+
+[node name="BackgroundMusic" type="Node" parent="."]
+script = ExtResource("5_e54dn")
+audio_stream = ExtResource("2_dc4i4")
+metadata/_custom_type_script = "uid://cem7fitujlcbv"

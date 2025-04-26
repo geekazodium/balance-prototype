@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://mnseugn6363p"]
+[gd_scene load_steps=10 format=3 uid="uid://mnseugn6363p"]
 
 [ext_resource type="Material" uid="uid://cir8ajgwpvbq0" path="res://assets/particles/player_projectile_hit/grease_process_material.tres" id="1_jaime"]
 [ext_resource type="Script" uid="uid://0dfyh4vgk6lr" path="res://scripts/particles/oneshot_autoplay_particle.gd" id="2_1yaw8"]
 [ext_resource type="Material" uid="uid://bn820bx21bwbq" path="res://assets/particles/player_projectile_hit/magic_process_material.tres" id="3_sbic6"]
+[ext_resource type="AudioStream" uid="uid://b2leos3260op5" path="res://assets/sound/player_projectile_hit.wav" id="4_ichyd"]
+[ext_resource type="Script" uid="uid://c2xyva8vlbp6y" path="res://scripts/utils/randomize_pitch.gd" id="5_dx6by"]
 
 [sub_resource type="Gradient" id="Gradient_un5al"]
 colors = PackedColorArray(0.62156, 0.43206, 0.295216, 1, 0.556863, 0.490196, 0.345098, 0)
@@ -29,7 +31,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0, 0)
 metadata/_snap_enabled = true
 
-[node name="PlayerProjectileHit" type="GPUParticles2D"]
+[node name="PlayerProjectileHit" type="GPUParticles2D" node_paths=PackedStringArray("play_sounds")]
 emitting = false
 amount = 20
 texture = SubResource("GradientTexture2D_jaime")
@@ -38,11 +40,18 @@ one_shot = true
 explosiveness = 0.98
 process_material = ExtResource("1_jaime")
 script = ExtResource("2_1yaw8")
+play_sounds = NodePath("AudioStreamPlayer2D")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 texture = SubResource("GradientTexture2D_ichyd")
 lifetime = 1.8
 explosiveness = 1.0
 process_material = ExtResource("3_sbic6")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ichyd")
+pitch_scale = 0.93
+bus = &"Sfx"
+script = ExtResource("5_dx6by")
 
 [connection signal="finished" from="." to="." method="_on_finished"]

@@ -462,6 +462,9 @@ boundary_center = NodePath("../CharacterBody2D")
 boundary_radius = 150.0
 offset_weight = 0.2
 
+[node name="AudioListener2D" type="AudioListener2D" parent="Camera2D"]
+current = true
+
 [node name="TeleportToCheckpoint" type="Node" parent="." node_paths=PackedStringArray("object_to_teleport")]
 script = ExtResource("8_xag0n")
 object_to_teleport = NodePath("../CharacterBody2D")

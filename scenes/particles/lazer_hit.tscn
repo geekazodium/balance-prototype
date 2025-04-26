@@ -44,4 +44,9 @@ lifetime = 1.2
 explosiveness = 1.0
 process_material = ExtResource("3_mmpth")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+pitch_scale = 2.0
+autoplay = true
+bus = &"Sfx"
+
 [connection signal="finished" from="." to="." method="_on_finished"]

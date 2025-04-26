@@ -5,7 +5,7 @@
 [ext_resource type="Material" uid="uid://bu2paf2lq3gt1" path="res://assets/particles/player_projectile_hit/player_hit_with_recoil_material.tres" id="3_kqrx3"]
 
 [sub_resource type="Gradient" id="Gradient_un5al"]
-colors = PackedColorArray(0.89646, 0, 0.179891, 1, 0.78048, 0, 0.232532, 0)
+colors = PackedColorArray(0.892959, 0.691153, 0.746315, 1, 0.725662, 3.54242e-05, 0.547494, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jaime"]
 gradient = SubResource("Gradient_un5al")
@@ -29,19 +29,21 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0, 0)
 metadata/_snap_enabled = true
 
-[node name="PlayerProjectileHit" type="GPUParticles2D"]
+[node name="PlayerProjectileHit" type="GPUParticles2D" node_paths=PackedStringArray("sub_emitters")]
 emitting = false
 amount = 20
 texture = SubResource("GradientTexture2D_jaime")
-lifetime = 1.7
+lifetime = 1.5
 one_shot = true
-explosiveness = 0.98
 process_material = ExtResource("1_kqrx3")
 script = ExtResource("2_tk15c")
+sub_emitters = [NodePath("GPUParticles2D")]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
 texture = SubResource("GradientTexture2D_ichyd")
-lifetime = 1.8
+lifetime = 1.9
+one_shot = true
 explosiveness = 0.9
 process_material = ExtResource("3_kqrx3")
 
