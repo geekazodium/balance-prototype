@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://ogbg3yku7hxo"]
+[gd_scene load_steps=50 format=3 uid="uid://ogbg3yku7hxo"]
 
 [ext_resource type="PackedScene" uid="uid://duilus4m3lllv" path="res://scenes/ui/ui_layer.tscn" id="1_frhop"]
 [ext_resource type="PackedScene" uid="uid://cvosldrvolics" path="res://scenes/player/player_platformer_character_body.tscn" id="2_3wawu"]
@@ -7,8 +7,10 @@
 [ext_resource type="Script" uid="uid://cehaxkqsuxblg" path="res://scripts/follow_camera.gd" id="3_o0xal"]
 [ext_resource type="PackedScene" uid="uid://cda5tqxxwg0rk" path="res://scenes/player/player_projectile_pool.tscn" id="4_akq3i"]
 [ext_resource type="Script" uid="uid://ddsnsbiu33boi" path="res://scripts/player/wand_sprite.gd" id="4_jmc7e"]
+[ext_resource type="Texture2D" uid="uid://7mswh0qi6xwm" path="res://assets/player/potion_overlay.png" id="5_e0r2u"]
 [ext_resource type="Script" uid="uid://ilyj2eqevm05" path="res://scripts/health/health_potions.gd" id="5_nhxao"]
 [ext_resource type="Script" uid="uid://2oabxte40wwh" path="res://scripts/ui/timer_progress_bar.gd" id="5_o0xal"]
+[ext_resource type="Texture2D" uid="uid://cdemr54kgl8ui" path="res://assets/player/potion_fill.png" id="6_c51em"]
 [ext_resource type="SpriteFrames" uid="uid://bqcntev4ihk1i" path="res://assets/player/player_sprite_frames.tres" id="7_gcose"]
 [ext_resource type="Script" uid="uid://b3hg1is8vp7gh" path="res://scripts/player/player_animated_sprite.gd" id="8_ko782"]
 [ext_resource type="Script" uid="uid://bhvqevw0nb05i" path="res://scripts/saves/teleport_to_checkpoint.gd" id="8_xag0n"]
@@ -376,11 +378,28 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/CheckpointDetectionBox"]
 shape = SubResource("CircleShape2D_3wawu")
 
-[node name="HealthPotionProgressBar" type="ProgressBar" parent="CharacterBody2D" node_paths=PackedStringArray("timer_to_display")]
-offset_left = -35.0
-offset_top = -17.0
-offset_right = 35.0
-offset_bottom = 10.0
+[node name="HealthPotionProgressBar" type="TextureProgressBar" parent="CharacterBody2D" node_paths=PackedStringArray("timer_to_display")]
+modulate = Color(1, 1, 1, 0.462745)
+z_index = 10
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -101.0
+offset_right = -10.0
+offset_bottom = -77.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+max_value = 1.0
+step = 0.071
+value = 0.142
+fill_mode = 3
+texture_over = ExtResource("5_e0r2u")
+texture_progress = ExtResource("6_c51em")
+texture_progress_offset = Vector2(4, 8)
 script = ExtResource("5_o0xal")
 timer_to_display = NodePath("../HealthPotions/HealUseTimer")
 

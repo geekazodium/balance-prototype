@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvrdmrpek56bm"]
+
+[ext_resource type="Script" uid="uid://cw6w63t7eegu8" path="res://scripts/postprocess/distort_layer.gd" id="1_m4pev"]
+[ext_resource type="PackedScene" uid="uid://d3hk0y01ix04q" path="res://scenes/postprocess/distortion.tscn" id="2_42eah"]
+
+[node name="DistortLayer" type="Node2D"]
+script = ExtResource("1_m4pev")
+distortion_scene = ExtResource("2_42eah")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.5, 0.5, 1, 1)

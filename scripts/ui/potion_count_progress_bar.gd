@@ -1,4 +1,4 @@
-extends ProgressBar
+extends TextureProgressBar
 
 func _ready() -> void:
 	EventBus.player_potion_count_changed.connect(self.on_count_changed);

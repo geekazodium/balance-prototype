@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1d4qxdj82eth"
-path="res://.godot/imported/floor_tileset.png-8c5ccd50df1c4a7f9780a96ce290b9b7.ctex"
+uid="uid://7mswh0qi6xwm"
+path="res://.godot/imported/potion_overlay.png-d42c471f0b081218bbc8b3dcfb898ecb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/floor_tileset.png"
-dest_files=["res://.godot/imported/floor_tileset.png-8c5ccd50df1c4a7f9780a96ce290b9b7.ctex"]
+source_file="res://assets/player/potion_overlay.png"
+dest_files=["res://.godot/imported/potion_overlay.png-d42c471f0b081218bbc8b3dcfb898ecb.ctex"]
 
 [params]
 

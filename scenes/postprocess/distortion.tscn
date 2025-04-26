@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3hk0y01ix04q"]
+
+[ext_resource type="Shader" uid="uid://cq1l5ggu8isv0" path="res://assets/postprocess/distortion_area.gdshader" id="1_kir7j"]
+[ext_resource type="Script" uid="uid://gmijc77fb4wd" path="res://scripts/postprocess/distortion.gd" id="2_pq8id"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_42eah"]
+resource_local_to_scene = true
+shader = ExtResource("1_kir7j")
+shader_parameter/distort = Vector2(1, 0)
+shader_parameter/distort_center = Vector2(0.5, 0.5)
+shader_parameter/area_scale_fac = 0.01
+shader_parameter/cutoff = 0.1
+
+[node name="Distortion" type="ColorRect"]
+material = SubResource("ShaderMaterial_42eah")
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 150.0
+offset_bottom = 150.0
+script = ExtResource("2_pq8id")

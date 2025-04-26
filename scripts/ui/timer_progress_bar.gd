@@ -1,4 +1,4 @@
-extends ProgressBar
+extends TextureProgressBar
 
 @export var timer_to_display: Timer = null;
 

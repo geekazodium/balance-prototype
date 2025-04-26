@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://bsc4670nmmmoy"]
+
+[ext_resource type="Shader" uid="uid://bdufk7e6v16rg" path="res://assets/postprocess/distortion_material.gdshader" id="1_2mtlo"]
+[ext_resource type="Script" uid="uid://iwgv8bvv1amx" path="res://scripts/postprocess/screen_size_viewport.gd" id="1_jxqm2"]
+[ext_resource type="PackedScene" uid="uid://dvrdmrpek56bm" path="res://scenes/postprocess/distort_layer.tscn" id="2_5ni0e"]
+[ext_resource type="Script" uid="uid://dpgimx2dqja1c" path="res://scripts/postprocess/main_camera_position_copy.gd" id="3_ol4d6"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7ac3l"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ac3l"]
+resource_local_to_scene = true
+shader = ExtResource("1_2mtlo")
+shader_parameter/distort_scale = 300.0
+shader_parameter/distort_texture = SubResource("ViewportTexture_7ac3l")
+
+[node name="PostProcessing" type="Node"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+script = ExtResource("1_jxqm2")
+
+[node name="DistortLayer" parent="SubViewport" node_paths=PackedStringArray("viewport") instance=ExtResource("2_5ni0e")]
+viewport = NodePath("..")
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport" node_paths=PackedStringArray("viewport")]
+script = ExtResource("3_ol4d6")
+viewport = NodePath("..")
+
+[node name="OutputLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="OutputLayer"]
+material = SubResource("ShaderMaterial_7ac3l")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
