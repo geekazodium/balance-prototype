@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bi8kuyodsn0x8"]
 
 [ext_resource type="Script" uid="uid://dmr8rgopkln6l" path="res://scripts/player/projectile/player_projectile.gd" id="1_mtxwn"]
-[ext_resource type="Texture2D" uid="uid://c46h4eyjwko4t" path="res://assets/icon.svg" id="2_b74st"]
+[ext_resource type="Texture2D" uid="uid://dgn3al4ylgsfy" path="res://assets/player/arrow.png" id="2_mtxwn"]
 [ext_resource type="Script" uid="uid://bead8dmkox6pj" path="res://scripts/player/projectile/projectile_trail.gd" id="3_d4y8y"]
 [ext_resource type="Script" uid="uid://cjw125odxylqs" path="res://scripts/player/projectile/homing_area.gd" id="4_umuub"]
 
@@ -16,7 +16,6 @@ colors = PackedColorArray(0.85098, 0, 0.988235, 0, 1, 1, 1, 1)
 radius = 200.0
 
 [node name="Projectile" type="ShapeCast2D" node_paths=PackedStringArray("sprite")]
-visible = false
 shape = SubResource("CircleShape2D_y3j0m")
 max_results = 1
 collision_mask = 53
@@ -30,8 +29,9 @@ lifetime = 2.0
 metadata/_custom_type_script = "uid://dmr8rgopkln6l"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.1875, 0.1875)
-texture = ExtResource("2_b74st")
+scale = Vector2(3, 3)
+texture = ExtResource("2_mtxwn")
+offset = Vector2(0, 1)
 
 [node name="ProjectileTrail" type="Line2D" parent="."]
 width = 4.0
