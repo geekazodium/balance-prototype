@@ -8,3 +8,4 @@ func _ready() -> void:
 
 func teleport(checkpoint: Checkpoint):
 	self.object_to_teleport.global_position = checkpoint.global_position;
+	self.object_to_teleport.reset_physics_interpolation();

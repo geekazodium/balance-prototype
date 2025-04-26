@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7ra7kfpysaka"]
+[gd_scene load_steps=5 format=3 uid="uid://b7ra7kfpysaka"]
 
 [ext_resource type="Script" uid="uid://bikh5ojsc4rj3" path="res://scripts/particles/world_particles.gd" id="1_8n5ms"]
 [ext_resource type="PackedScene" uid="uid://cruxl7tr33i4q" path="res://scenes/particles/lazer_hit.tscn" id="2_jtcsu"]
+[ext_resource type="PackedScene" uid="uid://mnseugn6363p" path="res://scenes/particles/player_projectile_hit.tscn" id="3_jtcsu"]
+[ext_resource type="PackedScene" uid="uid://dtrvpncrgavbs" path="res://scenes/particles/player_hit_by_recoil.tscn" id="4_5rkai"]
 
 [node name="WorldParticles" type="Node2D" node_paths=PackedStringArray("cache_node")]
 script = ExtResource("1_8n5ms")
 particle_types = Dictionary[StringName, PackedScene]({
-&"lazer_hit": ExtResource("2_jtcsu")
+&"lazer_hit": ExtResource("2_jtcsu"),
+&"player_hit_with_recoil": ExtResource("4_5rkai"),
+&"player_projectile_hit": ExtResource("3_jtcsu")
 })
 cache_node = NodePath("CanvasLayer/Node2D")
 
