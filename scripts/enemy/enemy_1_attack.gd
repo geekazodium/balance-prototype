@@ -14,7 +14,7 @@ func attack() -> void:
 	self.attack_sprite.scale.x = distance / self.attack_sprite.texture.get_width();
 	self.attack_sprite.position.x = distance * .5;
 	
-	EventBus.spawn_particles.emit("lazer_hit",self.get_collision_point());
+	EventBus.spawn_particles.emit("lazer_hit",self.get_collision_point(),0,null);
 	
 	var hit: PlatformerCharacterBody = self.get_collider() as PlatformerCharacterBody;
 	if hit == null:

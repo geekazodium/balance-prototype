@@ -10,7 +10,11 @@ func _ready() -> void:
 		var inst = particle.instantiate();
 		self.cache_node.add_child(inst);
 
-func on_spawn_particles(_name: StringName, pos: Vector2) -> void:
+func on_spawn_particles(_name: StringName, pos: Vector2, rot: float, attach_to: Node2D) -> void:
 	var instance: Node2D = self.particle_types[_name].instantiate();
-	self.add_child(instance);
+	if attach_to == null:
+		self.add_child(instance);
+	else: 
+		attach_to.add_child(instance);
+	instance.rotation = rot;
 	instance.global_position = pos;

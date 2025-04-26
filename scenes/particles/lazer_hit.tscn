@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cruxl7tr33i4q"]
 
-[ext_resource type="Material" uid="uid://bs0vku13ccl2j" path="res://assets/particles/lazer_hit_process_material.tres" id="1_h2x2e"]
+[ext_resource type="Material" uid="uid://bs0vku13ccl2j" path="res://assets/particles/turnip_lazer/lazer_hit_process_material.tres" id="1_h2x2e"]
 [ext_resource type="Script" uid="uid://0dfyh4vgk6lr" path="res://scripts/particles/oneshot_autoplay_particle.gd" id="2_pkcuo"]
-[ext_resource type="Material" uid="uid://dlc7h7lc7remt" path="res://assets/particles/lazer_hit_process_material_glow.tres" id="3_mmpth"]
+[ext_resource type="Material" uid="uid://dlc7h7lc7remt" path="res://assets/particles/turnip_lazer/lazer_hit_process_material_glow.tres" id="3_mmpth"]
 
 [sub_resource type="Gradient" id="Gradient_h2x2e"]
 offsets = PackedFloat32Array(0.00475436, 1)
@@ -14,12 +14,12 @@ width = 4
 height = 4
 fill_to = Vector2(1, 1)
 
-[sub_resource type="Gradient" id="Gradient_pkcuo"]
+[sub_resource type="Gradient" id="Gradient_mmpth"]
 offsets = PackedFloat32Array(0.00158479, 0.687797)
 colors = PackedColorArray(1, 1, 1, 1, 1, 0.403922, 0.439216, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_mmpth"]
-gradient = SubResource("Gradient_pkcuo")
+gradient = SubResource("Gradient_mmpth")
 width = 16
 height = 16
 fill = 1

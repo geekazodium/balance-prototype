@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bi8kuyodsn0x8"]
 
-[ext_resource type="Script" uid="uid://dmr8rgopkln6l" path="res://scripts/player/projectile/projectile.gd" id="1_mtxwn"]
+[ext_resource type="Script" uid="uid://dmr8rgopkln6l" path="res://scripts/player/projectile/player_projectile.gd" id="1_mtxwn"]
 [ext_resource type="Texture2D" uid="uid://c46h4eyjwko4t" path="res://assets/icon.svg" id="2_b74st"]
 [ext_resource type="Script" uid="uid://bead8dmkox6pj" path="res://scripts/player/projectile/projectile_trail.gd" id="3_d4y8y"]
 [ext_resource type="Script" uid="uid://cjw125odxylqs" path="res://scripts/player/projectile/homing_area.gd" id="4_umuub"]

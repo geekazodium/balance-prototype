@@ -12,5 +12,12 @@ func on_projectile_hit(projectile_velocity: Vector2, damage: int):
 		- projectile_velocity
 		- character_body.velocity * hit_deceleration_percent
 	);
-	EventBus.spawn_distortion.emit(self.character_body.global_position, projectile_velocity.normalized());
+	var position: Vector2 = self.character_body.global_position;
+	EventBus.spawn_distortion.emit(position, projectile_velocity.normalized());
+	EventBus.spawn_particles.emit(
+		"player_hit_with_recoil",
+		position,
+		atan2(-projectile_velocity.y,-projectile_velocity.x),
+		null
+	);
 	HealthTracker.get_health_tracker(character_body).change_health(-damage);
