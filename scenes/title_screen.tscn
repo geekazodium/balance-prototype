@@ -15,30 +15,24 @@ grow_vertical = 2
 script = ExtResource("1_s4lrb")
 default_button = NodePath("GoToLevelButton")
 
-[node name="GoToLevelButton" parent="." instance=ExtResource("1_sa3yf")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -671.0
-offset_top = -397.5
-offset_right = 671.0
-offset_bottom = 397.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_type_variation = &"FlatButton"
-text = "CLICK TO START"
-level_scene = ExtResource("2_s4lrb")
-
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1152.0
-offset_bottom = 648.0
-scale = Vector2(0.5, 0.5)
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("4_mgrm8")
-stretch_mode = 6
+expand_mode = 4
+stretch_mode = 5
+
+[node name="GoToLevelButton" parent="." instance=ExtResource("1_sa3yf")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"FlatButton"
+text = ""
+level_scene = ExtResource("2_s4lrb")

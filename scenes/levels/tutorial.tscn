@@ -18,6 +18,9 @@ position = Vector2(2380, 309)
 position = Vector2(936, 131)
 index = 1
 
+[node name="Checkpoint2" parent="." instance=ExtResource("3_1r3rq")]
+position = Vector2(2339, 236)
+
 [node name="Checkpoint3" parent="." instance=ExtResource("3_1r3rq")]
 position = Vector2(-1123, -462)
 index = 2
@@ -38,6 +41,10 @@ index = 6
 position = Vector2(1893, -1067)
 index = 5
 
+[node name="Checkpoint8" parent="." instance=ExtResource("3_1r3rq")]
+position = Vector2(2307, -691)
+index = 7
+
 [node name="Enemy1" parent="." instance=ExtResource("4_u4f7j")]
 position = Vector2(1447, -1584)
 
@@ -46,12 +53,6 @@ position = Vector2(2997, -607)
 
 [node name="LevelExit" parent="." instance=ExtResource("5_1wklo")]
 position = Vector2(3981, -634)
-
-[node name="Checkpoint2" parent="." instance=ExtResource("3_1r3rq")]
-position = Vector2(2339, 236)
-
-[node name="Checkpoint8" parent="." instance=ExtResource("3_1r3rq")]
-position = Vector2(2307, -691)
-index = 7
+next_scene = "res://scenes/levels/level1.tscn"
 
 [node name="PostProcessing" parent="." instance=ExtResource("6_7ac3l")]

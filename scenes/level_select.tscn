@@ -20,13 +20,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1152.0
-offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_r77uv")
-stretch_mode = 6
+expand_mode = 3
+stretch_mode = 5
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
