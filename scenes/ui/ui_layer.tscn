@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://duilus4m3lllv"]
+[gd_scene load_steps=13 format=3 uid="uid://duilus4m3lllv"]
 
 [ext_resource type="Script" uid="uid://fin4l0cl18l8" path="res://scripts/ui/charge_progress_bar.gd" id="1_3eqaf"]
 [ext_resource type="Texture2D" uid="uid://c5da3xqsojne5" path="res://assets/ui/charge_over.png" id="1_jj6jx"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://r2vcb01f71rm" path="res://scripts/ui/pause_input_listener.gd" id="5_jqcis"]
 [ext_resource type="Texture2D" uid="uid://crv7y6wwyiw0i" path="res://assets/ui/potion_1.png" id="8_jq4xh"]
 [ext_resource type="Texture2D" uid="uid://c2qibely17hsn" path="res://assets/ui/potion_2.png" id="9_jj6jx"]
+[ext_resource type="Script" uid="uid://dt4knhdh85m2" path="res://scripts/ui/low_health_overlay.gd" id="12_ykfca"]
 
 [node name="GameUILayer" type="CanvasLayer"]
 layer = 3
@@ -164,6 +165,17 @@ max_value = 2.0
 texture_over = ExtResource("8_jq4xh")
 texture_progress = ExtResource("9_jj6jx")
 script = ExtResource("4_mvntu")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.109804, 0.109804, 0.105882)
+script = ExtResource("12_ykfca")
 
 [connection signal="button_up" from="DeathMenu/RetryButton" to="DeathMenu" method="on_retry_button_clicked"]
 [connection signal="button_up" from="PauseMenu/ContinueButton" to="PauseMenu" method="on_continue_pressed"]
