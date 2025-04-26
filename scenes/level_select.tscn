@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdtw68smce8m2"]
+[gd_scene load_steps=9 format=3 uid="uid://cdtw68smce8m2"]
 
 [ext_resource type="Script" uid="uid://cb3aq0i45y32a" path="res://scripts/ui/level_choices_container.gd" id="1_2epne"]
+[ext_resource type="Script" uid="uid://cem7fitujlcbv" path="res://scripts/utils/background_music.gd" id="1_4nqmc"]
 [ext_resource type="PackedScene" uid="uid://carxnoridwfxh" path="res://scenes/ui/go_to_level_button.tscn" id="1_p0wlc"]
 [ext_resource type="PackedScene" uid="uid://chtyhbmkr1cos" path="res://scenes/levels/tutorial.tscn" id="2_r77uv"]
 [ext_resource type="PackedScene" uid="uid://dg2kl0u68vuuo" path="res://scenes/levels/level1.tscn" id="3_2epne"]
 [ext_resource type="PackedScene" uid="uid://ce0ylbruhj013" path="res://scenes/levels/level2.tscn" id="5_chg43"]
 [ext_resource type="Texture2D" uid="uid://2ha6shcjck61" path="res://assets/ui/menus/level_tray.webp" id="6_r77uv"]
+[ext_resource type="AudioStream" uid="uid://b2yuu542ry70i" path="res://assets/sound/mus_menu.wav" id="8_7plkq"]
 
 [node name="LevelSelect" type="Control"]
 layout_mode = 3
@@ -69,3 +71,8 @@ level_scene = ExtResource("3_2epne")
 layout_mode = 2
 text = "Level 2"
 level_scene = ExtResource("5_chg43")
+
+[node name="BackgroundMusic" type="Node" parent="."]
+script = ExtResource("1_4nqmc")
+audio_stream = ExtResource("8_7plkq")
+metadata/_custom_type_script = "uid://cem7fitujlcbv"
