@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dg2kl0u68vuuo"]
+[gd_scene load_steps=11 format=4 uid="uid://dg2kl0u68vuuo"]
 
 [ext_resource type="TileSet" uid="uid://cdm4vyunlsrcn" path="res://assets/level/floor_tileset.tres" id="1_x6ivy"]
 [ext_resource type="PackedScene" uid="uid://ogbg3yku7hxo" path="res://scenes/player/player_nodes.tscn" id="2_4tcl0"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://2pi7ltwtcyv3" path="res://scenes/checkpoint/level_exit.tscn" id="5_dywbp"]
 [ext_resource type="PackedScene" uid="uid://bsc4670nmmmoy" path="res://scenes/postprocess/post_processing.tscn" id="6_1seuy"]
 [ext_resource type="Script" uid="uid://cem7fitujlcbv" path="res://scripts/utils/background_music.gd" id="7_8a7m2"]
-[ext_resource type="AudioStream" uid="uid://bfqpidg6wtded" path="res://assets/sound/mus_faster_tut.wav" id="8_8a7m2"]
+[ext_resource type="AudioStream" uid="uid://bfqpidg6wtded" path="res://assets/sound/mus_faster_tut.wav" id="8_5ntmo"]
 [ext_resource type="TileSet" uid="uid://dn8fnonvbgygi" path="res://assets/level/floor_tiles_visual.tres" id="8_8a7m2"]
 [ext_resource type="Texture2D" uid="uid://d1l7y4v2os571" path="res://assets/level/warning.png" id="9_plydf"]
 
@@ -63,7 +63,7 @@ position = Vector2(6849, -1650)
 
 [node name="BackgroundMusic" type="Node" parent="."]
 script = ExtResource("7_8a7m2")
-audio_stream = ExtResource("8_8a7m2")
+audio_stream = ExtResource("8_5ntmo")
 metadata/_custom_type_script = "uid://cem7fitujlcbv"
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
