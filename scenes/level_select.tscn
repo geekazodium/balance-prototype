@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdtw68smce8m2"]
+[gd_scene load_steps=6 format=3 uid="uid://cdtw68smce8m2"]
 
 [ext_resource type="Script" uid="uid://cb3aq0i45y32a" path="res://scripts/ui/level_choices_container.gd" id="1_2epne"]
 [ext_resource type="PackedScene" uid="uid://carxnoridwfxh" path="res://scenes/ui/go_to_level_button.tscn" id="1_p0wlc"]
 [ext_resource type="PackedScene" uid="uid://chtyhbmkr1cos" path="res://scenes/levels/tutorial.tscn" id="2_r77uv"]
-[ext_resource type="Script" uid="uid://d10en11fmdlfw" path="res://scripts/ui/quit_game_button.gd" id="4_rif6e"]
+[ext_resource type="PackedScene" uid="uid://dg2kl0u68vuuo" path="res://scenes/levels/level1.tscn" id="3_2epne"]
+[ext_resource type="PackedScene" uid="uid://ce0ylbruhj013" path="res://scenes/levels/level2.tscn" id="5_chg43"]
 
 [node name="LevelSelect" type="Control"]
 layout_mode = 3
@@ -37,26 +38,25 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer" node_paths=PackedStringArray("default_button")]
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../../../Button")
-focus_next = NodePath("../../../Button")
 alignment = 1
 script = ExtResource("1_2epne")
 default_button = NodePath("GoToLevelButton")
 
 [node name="GoToLevelButton" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_p0wlc")]
 layout_mode = 2
-text = "Level 1"
+text = "Tutorial
+"
 level_scene = ExtResource("2_r77uv")
 
 [node name="GoToLevelButton2" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_p0wlc")]
 layout_mode = 2
 text = "Level 1"
-level_scene = ExtResource("2_r77uv")
+level_scene = ExtResource("3_2epne")
 
 [node name="GoToLevelButton3" parent="ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("1_p0wlc")]
 layout_mode = 2
-text = "Your only choice is level 1 :3"
-level_scene = ExtResource("2_r77uv")
+text = "Level 2"
+level_scene = ExtResource("5_chg43")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -70,21 +70,3 @@ offset_bottom = 97.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 31
 text = "LEVEL SELECT"
-
-[node name="Button" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -226.0
-offset_top = -64.0
-offset_right = -24.0
-offset_bottom = -24.0
-grow_horizontal = 0
-grow_vertical = 0
-focus_neighbor_top = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/GoToLevelButton3")
-focus_previous = NodePath("../ScrollContainer/MarginContainer/VBoxContainer/GoToLevelButton3")
-text = "Quit Game"
-script = ExtResource("4_rif6e")
