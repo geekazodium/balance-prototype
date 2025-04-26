@@ -1,0 +1,37 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=5 format=3 uid="uid://bn820bx21bwbq"]
+
+[sub_resource type="Curve" id="Curve_2rjqf"]
+bake_resolution = 30
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.539364, 0.720667), -0.669426, -0.669426, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yfcbc"]
+curve = SubResource("Curve_2rjqf")
+
+[sub_resource type="Curve" id="Curve_yfcbc"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+bake_resolution = 5
+_data = [Vector2(0, 24.0422), 0.0, 0.0, 0, 0, Vector2(0.381471, -23.0787), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bpb74"]
+texture_mode = 1
+curve = SubResource("Curve_yfcbc")
+
+[resource]
+lifetime_randomness = 0.4
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+spread = 35.0
+initial_velocity_min = 99.26
+initial_velocity_max = 166.73
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 18.56
+linear_accel_max = 54.45
+linear_accel_curve = SubResource("CurveTexture_bpb74")
+damping_min = 7.451
+damping_max = 15.052
+scale_min = 3.0
+scale_max = 4.0
+alpha_curve = SubResource("CurveTexture_yfcbc")

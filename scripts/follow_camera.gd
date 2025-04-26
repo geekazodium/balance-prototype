@@ -10,6 +10,7 @@ class_name FollowCamera
 func _ready() -> void:
 	EventBus.camera_target_added.connect(self.add_target);
 	EventBus.camera_target_removed.connect(self.remove_target);
+	EventBus.player_teleport_to_checkpoint.connect(self.reset_position,ConnectFlags.CONNECT_DEFERRED);
 
 func _process(_delta: float) -> void:
 	var sum: Vector2 = Vector2.ZERO;
@@ -34,3 +35,7 @@ func add_target(target: Node2D):
 func remove_target(target: Node2D):
 	#O(n) is fine because technically if n is always less than 10 this is actually O(1)
 	self.follow_targets.remove_at(self.follow_targets.find(target));
+
+func reset_position(_checkpoint: Checkpoint):
+	self.global_position = self.boundary_center.global_position;
+	self.reset_smoothing();

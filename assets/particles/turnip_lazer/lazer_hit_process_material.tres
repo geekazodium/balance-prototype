@@ -1,4 +1,4 @@
-[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://bs0vku13ccl2j"]
+[gd_resource type="ParticleProcessMaterial" load_steps=5 format=3 uid="uid://bs0vku13ccl2j"]
 
 [sub_resource type="Curve" id="Curve_5ivno"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
@@ -7,6 +7,13 @@ point_count = 1
 [sub_resource type="CurveTexture" id="CurveTexture_k2b8p"]
 texture_mode = 1
 curve = SubResource("Curve_5ivno")
+
+[sub_resource type="Curve" id="Curve_3f2p5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.677112, 0.686855), -1.15315, -1.15315, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_o5nu5"]
+curve = SubResource("Curve_3f2p5")
 
 [resource]
 particle_flag_disable_z = true
@@ -18,4 +25,7 @@ initial_velocity_max = 169.9
 angular_velocity_min = -283.28
 angular_velocity_max = 173.83
 gravity = Vector3(0, 98, 0)
+scale_min = 3.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_o5nu5")
 alpha_curve = SubResource("CurveTexture_k2b8p")

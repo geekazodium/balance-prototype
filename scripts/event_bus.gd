@@ -37,4 +37,4 @@ signal camera_target_removed(target: Node2D);
 signal spawn_distortion(position: Vector2, direction: Vector2);
 
 @warning_ignore("unused_signal")
-signal spawn_particles(particle: StringName, position: Vector2);
+signal spawn_particles(particle: StringName, position: Vector2, rotation: float, attach_to: Node2D);

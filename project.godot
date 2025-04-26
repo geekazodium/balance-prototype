@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.4", "GL Compatibility")
 [autoload]
 
 EventBus="*res://scripts/event_bus.gd"
+WorldParticles="*res://scripts/particles/world_particles.gd"
 
 [display]
 
