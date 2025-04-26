@@ -224,7 +224,7 @@ metadata/_custom_type_script = "uid://b7bbejkvqfik3"
 
 [node name="EnemySprite" type="AnimatedSprite2D" parent="."]
 z_index = 1
-position = Vector2(0, -6)
+position = Vector2(0, -9)
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("2_4ojn3")
 script = ExtResource("3_yvj8m")
@@ -263,6 +263,7 @@ collision_mask = 2
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/FindTargetState/DetectionArea2D"]
+position = Vector2(-76, 16)
 shape = SubResource("CircleShape2D_d8iib")
 
 [node name="FollowTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker", "character_body", "line_of_sight", "animation_player", "sprite")]
