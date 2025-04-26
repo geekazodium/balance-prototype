@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://cruxl7tr33i4q"]
+
+[ext_resource type="Material" uid="uid://bs0vku13ccl2j" path="res://assets/particles/lazer_hit_process_material.tres" id="1_h2x2e"]
+[ext_resource type="Script" uid="uid://0dfyh4vgk6lr" path="res://scripts/particles/oneshot_autoplay_particle.gd" id="2_pkcuo"]
+[ext_resource type="Material" uid="uid://dlc7h7lc7remt" path="res://assets/particles/lazer_hit_process_material_glow.tres" id="3_mmpth"]
+
+[sub_resource type="Gradient" id="Gradient_h2x2e"]
+offsets = PackedFloat32Array(0.00475436, 1)
+colors = PackedColorArray(0.811765, 0.509804, 0.635294, 1, 1, 0.290196, 0.305882, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pkcuo"]
+gradient = SubResource("Gradient_h2x2e")
+width = 4
+height = 4
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_pkcuo"]
+offsets = PackedFloat32Array(0.00158479, 0.687797)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.403922, 0.439216, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mmpth"]
+gradient = SubResource("Gradient_pkcuo")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+metadata/_snap_enabled = true
+
+[node name="LazerHit" type="GPUParticles2D"]
+emitting = false
+amount = 20
+texture = SubResource("GradientTexture2D_pkcuo")
+one_shot = true
+explosiveness = 0.88
+fixed_fps = 20
+process_material = ExtResource("1_h2x2e")
+script = ExtResource("2_pkcuo")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 12
+texture = SubResource("GradientTexture2D_mmpth")
+lifetime = 1.2
+explosiveness = 1.0
+process_material = ExtResource("3_mmpth")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

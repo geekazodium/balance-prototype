@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://de1c7pbg6ffas"]
+[gd_scene load_steps=22 format=3 uid="uid://de1c7pbg6ffas"]
 
 [ext_resource type="Script" uid="uid://b7bbejkvqfik3" path="res://scripts/characterbody/platformer_character_body.gd" id="1_d8iib"]
 [ext_resource type="SpriteFrames" uid="uid://cnqp4fbtnmw1e" path="res://assets/entities/turnip_sprite_frame.tres" id="2_4ojn3"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://dhhirfpekkgqm" path="res://scripts/state_machine/target_tracker.gd" id="5_co5vk"]
 [ext_resource type="Script" uid="uid://cb2xwt7u1wg2n" path="res://scripts/state_machine/attack_target_state.gd" id="5_p8wfw"]
 [ext_resource type="Script" uid="uid://niu1skdvfko7" path="res://scripts/enemy/enemy_1_attack.gd" id="6_5ax25"]
-[ext_resource type="Texture2D" uid="uid://c46h4eyjwko4t" path="res://assets/icon.svg" id="7_h86pc"]
 [ext_resource type="Script" uid="uid://dxe8lx58w7ilr" path="res://scripts/health/health_tracker.gd" id="7_s6epj"]
 [ext_resource type="Texture2D" uid="uid://ys4eddqbw72k" path="res://assets/entities/warning_line_texture.tres" id="8_ha4rr"]
 [ext_resource type="Script" uid="uid://dgrt0l8qdumsh" path="res://scripts/enemy/enemy_death.gd" id="10_x66wu"]
@@ -18,6 +17,17 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d8iib"]
 radius = 291.208
+
+[sub_resource type="Gradient" id="Gradient_4ojn3"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 0, 0.690196, 0, 1, 0.737255, 0.764706, 1, 1, 0, 0.690196, 0)
+metadata/_snap_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yvj8m"]
+gradient = SubResource("Gradient_4ojn3")
+height = 12
+fill_from = Vector2(1, 1)
 
 [sub_resource type="Animation" id="Animation_5ax25"]
 length = 0.001
@@ -167,7 +177,7 @@ tracks/4/path = NodePath("StateMachine/AttackTargetState/RayCast2D/Sprite2D:visi
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.366667, 0.5),
+"times": PackedFloat32Array(0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -296,8 +306,8 @@ knockback = 300
 
 [node name="Sprite2D" type="Sprite2D" parent="StateMachine/AttackTargetState/RayCast2D"]
 visible = false
-scale = Vector2(1, 0.09375)
-texture = ExtResource("7_h86pc")
+scale = Vector2(3, 3)
+texture = SubResource("GradientTexture2D_yvj8m")
 
 [node name="WarningLine" type="Line2D" parent="StateMachine/AttackTargetState/RayCast2D"]
 visible = false
