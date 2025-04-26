@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://cfraa4mwdjwi3"]
+
+[ext_resource type="Texture2D" uid="uid://b5e2pmm0f7h1d" path="res://assets/level/Evaluator_Exit_Spritesheet.png" id="1_3xinr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6sep"]
+atlas = ExtResource("1_3xinr")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33to4"]
+atlas = ExtResource("1_3xinr")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8e6i"]
+atlas = ExtResource("1_3xinr")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quttc"]
+atlas = ExtResource("1_3xinr")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3658w"]
+atlas = ExtResource("1_3xinr")
+region = Rect2(32, 48, 32, 48)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6sep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33to4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8e6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_quttc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3658w")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
