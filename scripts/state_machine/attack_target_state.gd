@@ -11,14 +11,11 @@ class_name AttackTargetState
 @export var target_tracker: TargetTracker = null;
 @export var character_body: PlatformerCharacterBody = null;
 @export var attack_animation_player: AnimationPlayer;
-@export var attack_animation: String = "";
+@export var attack_animation: StringName = "";
 @export var attack_over_state: String = "";
 @export var attack_canceled_state: String = "";
 @export var attack: Node2D;
 var attack_position: Vector2 = Vector2.ZERO;
-
-func process(_delta: float) -> void:
-	pass;
 
 # Called every physics tick. 'delta' is the elapsed time since the previous frame.
 func physics_process(_delta: float) -> void:

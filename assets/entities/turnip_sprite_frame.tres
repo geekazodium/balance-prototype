@@ -1,0 +1,94 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://cnqp4fbtnmw1e"]
+
+[ext_resource type="Texture2D" uid="uid://bmllbn0q5ey0w" path="res://assets/entities/turnip.png" id="1_m88x5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m88x5"]
+atlas = ExtResource("1_m88x5")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgi3m"]
+atlas = ExtResource("1_m88x5")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4amxg"]
+atlas = ExtResource("1_m88x5")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xysjd"]
+atlas = ExtResource("1_m88x5")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g10y"]
+atlas = ExtResource("1_m88x5")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnewd"]
+atlas = ExtResource("1_m88x5")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fmf0"]
+atlas = ExtResource("1_m88x5")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjfob"]
+atlas = ExtResource("1_m88x5")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lb8a"]
+atlas = ExtResource("1_m88x5")
+region = Rect2(32, 32, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m88x5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgi3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4amxg")
+}],
+"loop": true,
+"name": &"emerge",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xysjd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g10y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnewd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fmf0")
+}],
+"loop": true,
+"name": &"hop",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjfob")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lb8a")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 10.0
+}]

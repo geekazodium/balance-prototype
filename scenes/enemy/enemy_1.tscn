@@ -1,7 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://de1c7pbg6ffas"]
+[gd_scene load_steps=21 format=3 uid="uid://de1c7pbg6ffas"]
 
 [ext_resource type="Script" uid="uid://b7bbejkvqfik3" path="res://scripts/characterbody/platformer_character_body.gd" id="1_d8iib"]
+[ext_resource type="SpriteFrames" uid="uid://cnqp4fbtnmw1e" path="res://assets/entities/turnip_sprite_frame.tres" id="2_4ojn3"]
 [ext_resource type="Script" uid="uid://c12iwh2b01ldh" path="res://scripts/state_machine/state_machine.gd" id="3_o0pi5"]
+[ext_resource type="Script" uid="uid://dpap3ldos3kbq" path="res://scripts/utils/auto_animated_sprite.gd" id="3_yvj8m"]
 [ext_resource type="Script" uid="uid://8w8c5wltenpf" path="res://scripts/state_machine/follow_target_state.gd" id="4_co5vk"]
 [ext_resource type="Script" uid="uid://cg5no0m8i7mu8" path="res://scripts/state_machine/find_target_state.gd" id="4_v31qn"]
 [ext_resource type="Script" uid="uid://dhhirfpekkgqm" path="res://scripts/state_machine/target_tracker.gd" id="5_co5vk"]
@@ -9,13 +11,10 @@
 [ext_resource type="Script" uid="uid://niu1skdvfko7" path="res://scripts/enemy/enemy_1_attack.gd" id="6_5ax25"]
 [ext_resource type="Texture2D" uid="uid://c46h4eyjwko4t" path="res://assets/icon.svg" id="7_h86pc"]
 [ext_resource type="Script" uid="uid://dxe8lx58w7ilr" path="res://scripts/health/health_tracker.gd" id="7_s6epj"]
+[ext_resource type="Texture2D" uid="uid://ys4eddqbw72k" path="res://assets/entities/warning_line_texture.tres" id="8_ha4rr"]
 [ext_resource type="Script" uid="uid://dgrt0l8qdumsh" path="res://scripts/enemy/enemy_death.gd" id="10_x66wu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_trh57"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_trh57"]
-radius = 10.0
-height = 30.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d8iib"]
 radius = 291.208
@@ -57,6 +56,52 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EnemySprite:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+
+[sub_resource type="Animation" id="Animation_8pu2p"]
+resource_name = "hop"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hop"]
+}
+
+[sub_resource type="Animation" id="Animation_yvj8m"]
+resource_name = "pop_out"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"emerge"]
 }
 
 [sub_resource type="Animation" id="Animation_s6epj"]
@@ -139,25 +184,43 @@ tracks/5/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("EnemySprite:animation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"hop", &"shoot"]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5ax25"]
 _data = {
 &"RESET": SubResource("Animation_5ax25"),
+&"hop": SubResource("Animation_8pu2p"),
+&"pop_out": SubResource("Animation_yvj8m"),
 &"shoot_attack": SubResource("Animation_s6epj")
 }
 
 [node name="Enemy1" type="CharacterBody2D" node_paths=PackedStringArray("lock_acceleration_timer")]
-collision_layer = 16
+collision_layer = 144
+collision_mask = 129
 script = ExtResource("1_d8iib")
 lock_acceleration_timer = NodePath("LockAccelerationTimer")
 metadata/_custom_type_script = "uid://b7bbejkvqfik3"
 
+[node name="EnemySprite" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -6)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("2_4ojn3")
+script = ExtResource("3_yvj8m")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_trh57")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-modulate = Color(1, 0.439216, 0.431373, 1)
-mesh = SubResource("CapsuleMesh_trh57")
 
 [node name="LockAccelerationTimer" type="Timer" parent="."]
 process_callback = 0
@@ -174,39 +237,49 @@ states = {
 current_state = "FindTarget"
 metadata/_custom_type_script = "uid://c12iwh2b01ldh"
 
-[node name="FindTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker", "detection_area")]
+[node name="FindTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker", "detection_area", "animation_player")]
 script = ExtResource("4_v31qn")
 target_tracker = NodePath("../TargetTracker")
 detection_area = NodePath("DetectionArea2D")
 detected_state = "FollowTarget"
+animation = &"RESET"
+transition_animation = &"pop_out"
+animation_player = NodePath("../../AnimationPlayer")
 metadata/_custom_type_script = "uid://cg5no0m8i7mu8"
 
 [node name="DetectionArea2D" type="Area2D" parent="StateMachine/FindTargetState"]
 collision_layer = 0
 collision_mask = 2
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StateMachine/FindTargetState/DetectionArea2D"]
 shape = SubResource("CircleShape2D_d8iib")
 
-[node name="FollowTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker", "character_body", "line_of_sight")]
+[node name="FollowTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker", "character_body", "line_of_sight", "animation_player", "sprite")]
 script = ExtResource("4_co5vk")
 target_tracker = NodePath("../TargetTracker")
 character_body = NodePath("../..")
 target_lost_state = "FindTarget"
 use_attack_state = "UseAttack"
 line_of_sight = NodePath("LineOfSight")
+line_of_sight_timeout = 2.0
 attack_distance_tolerance = 10.0
+animation_player = NodePath("../../AnimationPlayer")
+animation_name = &"hop"
+sprite = NodePath("../../EnemySprite")
 metadata/_custom_type_script = "uid://8w8c5wltenpf"
 
 [node name="LineOfSight" type="RayCast2D" parent="StateMachine/FollowTargetState"]
-collision_mask = 7
+enabled = false
+target_position = Vector2(0, 0)
+collision_mask = 3
 
 [node name="AttackTargetState" type="Node2D" parent="StateMachine" node_paths=PackedStringArray("target_tracker", "character_body", "attack_animation_player", "attack")]
 script = ExtResource("5_p8wfw")
 target_tracker = NodePath("../TargetTracker")
 character_body = NodePath("../..")
-attack_animation_player = NodePath("../AnimationPlayer")
-attack_animation = "shoot_attack"
+attack_animation_player = NodePath("../../AnimationPlayer")
+attack_animation = &"shoot_attack"
 attack_over_state = "FollowTarget"
 attack_canceled_state = "FindTarget"
 attack = NodePath("RayCast2D")
@@ -215,10 +288,11 @@ metadata/_custom_type_script = "uid://cb2xwt7u1wg2n"
 [node name="RayCast2D" type="RayCast2D" parent="StateMachine/AttackTargetState" node_paths=PackedStringArray("attack_sprite")]
 enabled = false
 target_position = Vector2(1000, 0)
-collision_mask = 7
+collision_mask = 3
 script = ExtResource("6_5ax25")
 attack_sprite = NodePath("Sprite2D")
 damage = 3
+knockback = 300
 
 [node name="Sprite2D" type="Sprite2D" parent="StateMachine/AttackTargetState/RayCast2D"]
 visible = false
@@ -230,18 +304,12 @@ visible = false
 points = PackedVector2Array(0, 0, 1000, 0)
 width = 2.0
 default_color = Color(1, 0.321569, 0.317647, 1)
+texture = ExtResource("8_ha4rr")
+texture_mode = 2
 
 [node name="TargetTracker" type="Node" parent="StateMachine"]
 script = ExtResource("5_co5vk")
 metadata/_custom_type_script = "uid://dhhirfpekkgqm"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="StateMachine"]
-root_node = NodePath("../..")
-callback_mode_process = 0
-callback_mode_method = 1
-libraries = {
-&"": SubResource("AnimationLibrary_5ax25")
-}
 
 [node name="HealthTracker" type="Node" parent="."]
 script = ExtResource("7_s6epj")
@@ -258,6 +326,14 @@ offset_right = 29.0
 offset_bottom = -22.0
 show_percentage = false
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+callback_mode_process = 0
+callback_mode_method = 1
+libraries = {
+&"": SubResource("AnimationLibrary_5ax25")
+}
+
+[connection signal="body_entered" from="StateMachine/FindTargetState/DetectionArea2D" to="StateMachine/FindTargetState" method="on_body_enter_detection"]
 [connection signal="death" from="HealthTracker" to="EnemyDeath" method="_on_death"]
 [connection signal="health_changed" from="HealthTracker" to="ProgressBar" method="set_value"]
 [connection signal="max_health_changed" from="HealthTracker" to="ProgressBar" method="set_max"]

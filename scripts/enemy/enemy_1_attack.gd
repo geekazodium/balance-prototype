@@ -7,7 +7,7 @@ extends RayCast2D
 func attack() -> void:
 	self.force_raycast_update();
 	
-	var collision_local: Vector2 = self.to_local(self.get_collision_point());
+	var collision_local: Vector2 = self.get_collision_point() - self.global_position;
 	
 	var distance: float = collision_local.length() + 3;
 	
