@@ -18,6 +18,6 @@ func on_projectile_hit(projectile_velocity: Vector2, damage: int):
 		"player_hit_with_recoil",
 		position,
 		atan2(-projectile_velocity.y,-projectile_velocity.x),
-		null
+		self.character_body
 	);
 	HealthTracker.get_health_tracker(character_body).change_health(-damage);
