@@ -24,6 +24,7 @@ script = ExtResource("1_jxqm2")
 viewport = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="SubViewport" node_paths=PackedStringArray("viewport")]
+physics_interpolation_mode = 2
 script = ExtResource("3_ol4d6")
 viewport = NodePath("..")
 
