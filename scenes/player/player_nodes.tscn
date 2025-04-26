@@ -416,7 +416,7 @@ process_callback = 0
 one_shot = true
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="CharacterBody2D" node_paths=PackedStringArray("character_body")]
-position = Vector2(0, -5)
+position = Vector2(0, -9)
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("7_gcose")
 flip_h = true
